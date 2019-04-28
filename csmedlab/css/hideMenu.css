@@ -1,0 +1,63 @@
+/*影藏菜单*/
+
+#menu-hide{
+  height: 100%;
+  width: 6em;
+  background-color: white;
+  position: fixed;
+  z-index: 1000;
+  /*padding: 0.4em;*/
+
+  transform: translate(-6em);
+  transition-duration: 0.1s;
+  transition-timing-function: ease-out;
+
+  overflow: scroll;
+}
+
+#menu-hide li{
+  list-style: none;
+  font-size: 0.4em;
+  line-height: 3em;
+  color: rgba(0,0,0,0.65);
+  font-family: sans-serif;
+}
+
+#menu-hide ol{
+  padding-left: 0.4em;
+  display: none;
+}
+
+.open-list-button{
+  background-image: url("../img/icon/arrow_down.png");
+  background-size: 1em 1em;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  /*background-color: green;*/
+  float: right;
+  margin-top: 0.9em;
+}
+
+
+#menu-hide .menu-hide-logo{
+  height: 1.5em;
+  border-bottom: 1px solid #888888;
+}
+#menu-hide .menu-hide-info{
+  padding: 0.4em 0.4em;
+}
+
+#menu-hide-cover{
+  width: 4em;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+  right: 0;
+  top: 0;
+  background-color: rgba(200,200,200,0.5);
+  transform: translate(4em);
+  transition-duration: 0.2s;
+}
+

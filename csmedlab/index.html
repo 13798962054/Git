@@ -1,0 +1,187 @@
+
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>深圳市中南医学检验实验室</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="SHORTCUT ICON" href="img/icon/logo.png">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/hideMenu.css">
+</head>
+
+<body>
+<!--影藏菜单-->
+<div id="menu-hide">
+  <div class="menu-hide-logo"><img src="img/icon/logo_title.png" class="menu menu-logo"></div>
+  <ul class="menu-hide-info">
+    <li onclick="home()" style="color: #00afcf;">首页</li>
+    <li onclick="about()">关于中南医学检验室</li>
+    <li onclick="gene_detection()">基因检测<i id="open-gene-detection-button" class="open-list-button"></i></li>
+    <ol id="gene_detection">
+      <li onclick="gene_detection_1()">无产前基因检测</li>
+      <li onclick="gene_detection_2()">乳腺癌基因检测</li>
+      <li onclick="gene_detection_3()">天赋基因检测</li>
+      <li onclick="gene_detection_4()">抑郁症基因检测</li>
+      <li onclick="gene_detection_5()">结肠癌基因检测</li>
+      <li onclick="gene_detection_6()">多肿瘤基因检测</li>
+      <li onclick="gene_detection_7()">全基因组检测</li>
+    </ol>
+    <li onclick="immunological_technique()">免疫技术<i id="open-immunological-technique-button" class="open-list-button"></i></li>
+    <ol id="immunological_technique">
+      <li onclick="immunological_technique_1()">免疫力检测</li>
+      <li onclick="immunological_technique_2()">TORCH优生优育筛查</li>
+      <li onclick="immunological_technique_3()">AMH</li>
+      <li onclick="immunological_technique_4()">呼吸道传染病诊断</li>
+      <li onclick="immunological_technique_5()">胃肠道及相关疾病诊断</li>
+      <li onclick="immunological_technique_6()">真菌感染疾病诊断</li>
+      <li onclick="immunological_technique_7()">虫媒传染病诊断</li>
+      <li onclick="immunological_technique_8()">免疫效果诊断</li>
+      <li onclick="immunological_technique_9()">封闭抗体检测与免疫治疗</li>
+    </ol>
+    <li onclick="pathological_diagnosis()">病理诊断<i id="open-pathological-diagnosis-button" class="open-list-button"></i></li>
+    <ol id="pathological_diagnosis">
+      <li onclick="pathological_diagnosis_1()">DNA倍体定量-宫颈病变早期筛查</li>
+      <li onclick="pathological_diagnosis_2()">HPV L1检测-宫颈病变预后</li>
+      <li onclick="pathological_diagnosis_3()">染色体核型分析</li>
+    </ol>
+    <li onclick="news()">最新动态</li>
+    <li onclick="technology_platform()">技术平台</li>
+    <li onclick="technical_support()">技术支持</li>
+    <li onclick="solution()">解决方案</li>
+    <li onclick="contact_us()">联系我们</li>
+  </ul>
+</div>
+
+<!--影藏菜单遮布-->
+<div id="menu-hide-cover" onclick="hideHideMenu()">
+</div>
+
+<!--头部-->
+  <div id="menu-bar">
+    <img src="img/icon/logo_title.png" class="menu menu-logo">
+    <img src="img/icon/menu-bar-icon.PNG" class="menu menu-bar-icon" onclick="showHideMenu()">
+  </div>
+  <div id="menu-bar-fixed"></div>
+
+<!--  产品服务 -->
+  <div id="product">
+    <div class="product-show">
+      <div class="product-show-1">
+
+        <div class="product-info">
+          <p class="product-info-title">基因检测平台</p>
+          <p class="product-info-context">全面的进行遗传病、肿瘤、罕见疾病等多种疾病及靶向药物基因、肥胖、耐药基因的精准检测</p>
+        </div>
+      </div>
+
+      <div class="product-show-2">
+        <div class="product-info">
+          <p class="product-info-title">免疫技术平台</p>
+          <p class="product-info-context">科学合理地设置检测结果的灰区范围，最大限度地检出可疑样本，防止弱阳性样本的漏检情况。</p>
+        </div>
+      </div>
+      <div class="product-show-3">
+        <div class="product-info">
+          <p class="product-info-title">病理诊断平台</p>
+          <p class="product-info-context">通过早期筛查和预后高危分流，做到有效、准确筛查，而且可以对阳性病例分流，预测病变发展.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<div id="culture">
+  <div class="info">
+    <div class="p">
+      <div class="title">坚持宣导“严谨、创新、责任、关爱”的企业精神</div>
+      <div class="context">企业目标是运用领先的技术平台，先进的经营理念，科学求真的态度解除病患痛苦，提高生命质量，造福人类社会。</div>
+    </div>
+    <div class="img"><img src="img/img/lab8.png" alt=""></div>
+  </div>
+
+  <div class="info">
+    <div class="p">
+      <div class="title">三大技术平台</div>
+      <div class="context">基因检测技术平台、免疫技术平台和病理诊断平台</div>
+    </div>
+    <div class="img"><img src="img/img/lab3.png" alt=""></div>
+  </div>
+
+
+</div>
+
+
+<!--关于中南-->
+<div id="aboutUs">
+  <div class="context">
+    <div class="title">关于中南检验实验室</div>
+    <div class="info">
+      <p>深圳中南医学检验实验室是一家第三方独立医学实验室。重点发展基因检测、基础免疫检验和病理诊断。拥有三大技术平台：基因检测技术平台、免疫技术平台和病理诊断平台。四个研究发展方向和一个基地：脑脊液诊断、疫苗免疫效果评价、阿尔兹海默症研究诊断、奥科基因检测和维润赛润亚太培训基地。公司组建了一支包含国内外著名专家、教授和博士等高级科技人员的高层次和高素质的团队。</p>
+      <p>深圳中南医学检验实验室一贯坚持宣导“严谨、创新、责任、关爱”的企业精神，企业目标是运用领先的技术平台，先进的经营理念，科学求真的态度解除病患痛苦，提高生命质量，造福人类社会。</p>
+      <div class="info-baozhang">
+        <span><img src="img/icon/about-icon-baozhang.png"></span>
+      </div>
+      <div class="info-baozhang">
+        <span>严格质量控制体系</span>
+        <span>生产溯源体系</span>
+      </div>
+
+      <div class="info-baozhang">
+        <span><img src="img/icon/about-icon-bulb.png"></span>
+      </div>
+      <div class="info-baozhang">
+        <span>创新研发实力</span>
+        <span>快、易、准</span>
+      </div>
+      <div class="info-baozhang">
+        <span><img src="img/icon/about-icon-baozhang.png"></span>
+      </div>
+      <div class="info-baozhang">
+        <span>闪电服务体系</span>
+        <span>智能售后管理</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--底部-->
+<div id="bottom-bar">
+
+  <ul class="bottom-info">
+    <li onclick="about()">关于我们</li>
+    <li onclick="gene_detection_1()">基因检测</li>
+    <li onclick="immunological_technique_1()">免疫技术</li>
+    <li onclick="pathological_diagnosis_1()">病理诊断</li>
+    <li onclick="contact_us()">联系我们</li>
+  </ul>
+
+  <div class="wechat-container">
+    <ul>
+      <li class="wechat-container-phone">
+        <span><img src="img/icon/phone_iocn.png" alt=""></span>
+        <span>13902952808</span>
+      </li>
+      <li class="wechat-container-img"><img src="img/icon/wechat_icon.png"></li>
+      <li class="wechat-container-info">微信公众号</li>
+    </ul>
+  </div>
+
+  <div id="map">
+    <div id="map-container"></div>
+    <span>公司地址：深圳市福田区红岭北路3001号先科激光大厦902室</span>
+  </div>
+</div>
+
+</body>
+<script src="http://webapi.amap.com/maps?v=1.3&key=6052758fe146d739d9e0eed03a503214"></script>
+<script src="js/vendor/jquery-3.3.1.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/map.js"></script>
+<script src="js/hideMenuAction.js"></script>
+</html>

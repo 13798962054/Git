@@ -1,0 +1,263 @@
+
+/*头部标签*/
+#menu-bar{
+  width: 10em;
+  height: 1.5em;
+  position: fixed;
+  background-color: white;
+  z-index: 999;
+}
+#menu-bar-fixed{
+  height: 1.5em;
+}
+.menu{
+}
+
+.menu-bar-icon{
+  position: absolute;
+  top: 0.3em;
+  right: 1em;
+  width: 1em;
+  height: 1em;
+}
+
+.menu-logo{
+  display:block;
+  height: 1.5em;
+  position: absolute;
+  left: 1em;
+}
+
+
+/*产品服务*/
+#product{
+  /*margin-top: 2em;*/
+  width:10em;
+  overflow: hidden;
+}
+#product .product-show{
+  width: 30em;
+  transition-duration: 1s;
+}
+#product .product-show .product-show-1,#product .product-show .product-show-2,#product .product-show .product-show-3{
+  background-size: 10em 6em;
+  width: 10em;
+  height: 6em;
+  float: left;
+}
+#product .product-show .product-show-1{
+  background-image: url("../img/img/lab1.png");
+}
+#product .product-show .product-show-2{
+  background-image: url("../img/img/lab2.png");
+}
+#product .product-show .product-show-3{
+  background-image: url("../img/img/dna1.png");
+}
+
+#product .product-info{
+  background: rgba(100,100,100,0.2);
+  /*height: 6em;*/
+  /*padding: 1.2em 1em;*/
+  margin-top: 1.2em;
+}
+
+#product .product-info-title{
+  /*margin-top: 2em;*/
+  font-size: 0.7em;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+#product .product-info-context{
+  font-size: 0.5em;
+  color: white;
+  width: 16em;
+  text-align: left;
+  margin-left: 2em;
+}
+
+/*企业文化*/
+#culture{
+}
+#culture .info .title{
+  color:#0695af;
+  font-size: 0.65em;
+  margin-bottom: 0.5em;
+  line-height: 1.4em;
+}
+#culture .info .context{
+  font-size: 0.37em;
+  line-height: 1.65em;
+}
+#culture .info img{
+  width: 10em;
+}
+#culture .info{
+  font-family: "新宋体";
+}
+#culture .info .p{
+  width: 8em;
+  margin: 1em auto 0.5em;
+}
+
+
+/*关于我们*/
+
+#aboutUs{
+  width: 8em;
+  height: 32em;
+  background-image: url("../img/img/dna1.png");
+  background-repeat: no-repeat;
+  background-size: 10em 34em;
+  padding: 1.3em 1em 0 1em;
+}
+#aboutUs .context .title{
+  text-align: left;
+  color: #ffffff;
+  font-size: 0.87em;
+  line-height: 1.9em;
+}
+#aboutUs .context .info{
+  width: 7em;
+  height: 27em;
+  background-color: white;
+  border-radius: 0.1em;
+  padding: 0.5em;
+}
+#aboutUs .context .info p{
+  font-size: 0.4em;
+  color: #82989c;
+  /*首行缩进两个字符*/
+  text-indent:2em;
+  line-height: 1.8em;
+}
+
+.info-baozhang p{
+  font-size: 0.4em;
+  color: #82989c;
+  /*首行缩进两个字符*/
+  text-indent:2em;
+  line-height: 1.8em;
+}
+
+#aboutUs .context .info span{
+  display: block;
+  text-align: center;
+
+  font-size: 0.4em;
+  color: #000;
+  line-height: 1.8em;
+}
+
+.info-baozhang span{
+  display: block;
+  text-align: center;
+
+  font-size: 0.4em;
+  color: #000;
+  line-height: 1.8em;
+}
+#aboutUs .context .info .info-baozhang{
+  margin-top: 0.5em;
+}
+
+/*about*/
+/*头部*/
+#about_head{
+  width: 10em;
+  height: 3.5em;
+  overflow: hidden;
+
+}
+
+/*头部动画*/
+.about_head_animation{
+  transition-duration: 1s;
+}
+
+.about_head_animation img{
+  width: 10em;
+  height: 3.5em;
+
+}
+
+/*头部文字*/
+.about_head_context{
+  font-size: 0.5em;
+  width: 16em;
+  height: 6em;
+  padding: 1em 2em 0;
+
+  position: relative;
+  top: -266em;
+  left: 0;
+  color: #ffffff;
+
+}
+
+.about_head_title{
+
+  font-size: 1.8em;
+  /*text-align: center;*/
+}
+
+.about_head_detail{
+  color: rgba(50,56,50,0.65);
+  font-family: "PingFang SC";
+  font-size: 0.78em;
+}
+
+
+/*公司简介*/
+.company_info{
+  padding: 0.8em 2em 0;
+}
+
+.company_info_hr{
+  width: 2.3em;
+  height: 0;
+  border-top: 1px solid #00afcf;
+  text-align: center;
+  margin: 0 1.85em 0.56em;
+}
+
+.company_info_title{
+  text-align: center;
+
+}
+
+.company_info_list{
+  text-align: center;
+  font-size: 0.5em;
+  margin: 0.5em 0;
+  color: #394244;
+}
+
+.company_info_list_detail{
+  text-align: center;
+  font-family: PingFangSC-Regular,Arial,Microsoft YaHei,黑体,宋体,sans-serif;
+  color: #00AFCF;
+  font-size: 0.5em;
+  line-height: 2em;
+}
+
+.company_info_context{
+  font-size: 0.4em;
+  color: #55555c;
+
+  line-height: 1.8em;
+  padding: 1em 1.5em 0.5em;
+}
+.company_info_context p{
+  /*首行缩进两个字符*/
+  text-indent:2em;
+  line-height: 2em;
+}
+
+.company_info_img img{
+  width: 100%;
+  margin: 1.5em 0;
+}
+

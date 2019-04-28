@@ -1,0 +1,57 @@
+/*基因检测、免疫技术、病理诊断子页面样式表*/
+#detection{
+    font-family: 新宋体;
+    margin-bottom: 0.5em;
+}
+#detection .title-img{
+    overflow: hidden;
+}
+#detection .title-img img{
+    width: 12em;
+    position: relative;
+    top: 0.5em;
+    left: -1em;
+}
+
+#detection .title{
+    font-size: 0.5em;
+    color: #C00000;
+    text-align: center;
+}
+
+#detection .title-eng{
+    color: #7F7F7F;
+    font-size: 0.4em;
+    text-align: center;
+}
+
+#detection .img img{
+    width: 10em;
+
+}
+/*内容*/
+#detection .context{
+    padding: 1em;
+}
+#detection .context p{
+    font-size: 0.4em;
+    text-indent: 2em;
+    line-height: 2em;
+}
+#detection .context p .mark{
+    color: #00afcf;
+}
+/*表单内容*/
+#detection .context table{
+    /*border: 1px solid black;*/
+    margin: 1em auto 0;
+    border-collapse: collapse;
+}
+#detection .context table tr{
+    /*border: 1px solid black;*/
+    text-align: center;
+}
+#detection .context table tr td,#detection .context table tr th{
+    padding: 0.4em 1.1em;
+    border: 1px solid black;
+}

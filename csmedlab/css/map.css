@@ -1,0 +1,103 @@
+/*底部*/
+#bottom-bar{
+  width: 10em;
+  height: 13em;
+  background-color: #394244;
+  /*position: absolute;*/
+  bottom: 0;
+}
+
+/*地图*/
+#map{
+  width: 10em;
+  height: 5em;
+  border-top: 0.1em #6B7173 solid;
+  float: left;
+}
+#map span{
+  float: left;
+  font-size: 0.373em;
+  color: #ffffff;
+
+  padding: 0.5em 3em;
+  /*border:1px solid black;*/
+  display: block;
+  font-family: "sans-serif";
+  font-weight: 500;
+}
+#map-container {
+  margin: 0.5em 1em 0 1em;
+  width: 8em;
+  height: 4em;
+}
+.marker {
+  color: #ff6600;
+  padding: 4px 10px;
+  border: 1px solid #fff;
+  white-space: nowrap;
+  font-size: 7px;
+  background-color: #0066ff;
+}
+
+
+
+#bottom-bar .bottom-info{
+  float: left;
+  font-size: 0.373em;
+  color: #ffffff;
+
+  padding: 1.5em 2em;
+  /*border:1px solid black;*/
+  display: block;
+  line-height: 2.8em;
+  font-family: "sans-serif";
+  font-weight: 500;
+}
+#bottom-bar .bottom-info li{
+  list-style: none;
+}
+#bottom-bar div{
+
+}
+
+#bottom-bar .wechat-container{
+  width: 7em;
+  height: 6em;
+  float: left;
+  margin-top: 0.9em;
+}
+#bottom-bar .wechat-container .wechat-container-img img{
+  width: 4.41em;
+  height: 4.41em;
+}
+
+#bottom-bar .wechat-container .wechat-container-phone img{
+  width: 1.2em;
+  height: 1.2em;
+  position: relative;
+  top: 0.15em;
+}
+#bottom-bar .wechat-container .wechat-container-phone{
+  margin-bottom: 0.4em;
+}
+#bottom-bar .wechat-container .wechat-container-phone span{
+  font-family: "新宋体";
+  font-size: 0.88em;
+  font-weight: bolder;
+}
+#bottom-bar .wechat-container .wechat-container-phone span:nth-child(1){
+  margin-right: 0.5em;
+}
+#bottom-bar .wechat-container .wechat-container-info{
+  font-size: 0.373em;
+}
+
+#bottom-bar .wechat-container li{
+  list-style: none;
+  font-size: 0.6em;
+  color: #ffffff;
+  text-align: center;
+}
+#bottom-bar .wechat-container img{
+
+}

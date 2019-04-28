@@ -1,0 +1,131 @@
+<!--技术支持-->
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>深圳市中南医学检验实验室</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="SHORTCUT ICON" href="img/icon/logo.png">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/hideMenu.css">
+</head>
+
+<body>
+<!--影藏菜单-->
+<div id="menu-hide">
+  <div class="menu-hide-logo"><img src="img/icon/logo_title.png" class="menu menu-logo"></div>
+  <ul class="menu-hide-info">
+    <li onclick="home()">首页</li>
+    <li onclick="about()">关于中南医学检验室</li>
+    <li onclick="gene_detection()">基因检测<i id="open-gene-detection-button" class="open-list-button"></i></li>
+    <ol id="gene_detection">
+      <li onclick="gene_detection_1()">无产前基因检测</li>
+      <li onclick="gene_detection_2()">乳腺癌基因检测</li>
+      <li onclick="gene_detection_3()">天赋基因检测</li>
+      <li onclick="gene_detection_4()">抑郁症基因检测</li>
+      <li onclick="gene_detection_5()">结肠癌基因检测</li>
+      <li onclick="gene_detection_6()">多肿瘤基因检测</li>
+      <li onclick="gene_detection_7()">全基因组检测</li>
+    </ol>
+    <li onclick="immunological_technique()">免疫技术<i id="open-immunological-technique-button" class="open-list-button"></i></li>
+    <ol id="immunological_technique">
+      <li onclick="immunological_technique_1()">免疫力检测</li>
+      <li onclick="immunological_technique_2()">TORCH优生优育筛查</li>
+      <li onclick="immunological_technique_3()">AMH</li>
+      <li onclick="immunological_technique_4()">呼吸道传染病诊断</li>
+      <li onclick="immunological_technique_5()">胃肠道及相关疾病诊断</li>
+      <li onclick="immunological_technique_6()">真菌感染疾病诊断</li>
+      <li onclick="immunological_technique_7()">虫媒传染病诊断</li>
+      <li onclick="immunological_technique_8()">免疫效果诊断</li>
+      <li onclick="immunological_technique_9()">封闭抗体检测与免疫治疗</li>
+    </ol>
+    <li onclick="pathological_diagnosis()">病理诊断<i id="open-pathological-diagnosis-button" class="open-list-button"></i></li>
+    <ol id="pathological_diagnosis">
+      <li onclick="pathological_diagnosis_1()">DNA倍体定量-宫颈病变早期筛查</li>
+      <li onclick="pathological_diagnosis_2()">HPV L1检测-宫颈病变预后</li>
+      <li onclick="pathological_diagnosis_3()">染色体核型分析</li>
+    </ol>
+    <li onclick="news()">最新动态</li>
+    <li onclick="technology_platform()">技术平台</li>
+    <li onclick="technical_support()" style="color: #00afcf;">技术支持</li>
+    <li onclick="solution()">解决方案</li>
+    <li onclick="contact_us()">联系我们</li>
+  </ul>
+</div>
+
+<!--影藏菜单遮布-->
+<div id="menu-hide-cover" onclick="hideHideMenu()">
+</div>
+
+<!--头部-->
+<div id="menu-bar">
+  <img src="img/icon/logo_title.png" class="menu menu-logo">
+  <img src="img/icon/menu-bar-icon.PNG" class="menu menu-bar-icon" onclick="showHideMenu()">
+</div>
+<div id="menu-bar-fixed"></div>
+
+
+<!--内容-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--底部-->
+<div id="bottom-bar">
+
+  <ul class="bottom-info">
+    <li onclick="about()">关于我们</li>
+    <li onclick="gene_detection_1()">基因检测</li>
+    <li onclick="immunological_technique_1()">免疫技术</li>
+    <li onclick="pathological_diagnosis_1()">病理诊断</li>
+    <li onclick="contact_us()">联系我们</li>
+  </ul>
+
+  <div class="wechat-container">
+    <ul>
+      <li class="wechat-container-phone">
+        <span><img src="img/icon/phone_iocn.png" alt=""></span>
+        <span>13902952808</span>
+      </li>
+      <li class="wechat-container-img"><img src="img/icon/wechat_icon.png"></li>
+      <li class="wechat-container-info">微信公众号</li>
+    </ul>
+  </div>
+
+  <div id="map">
+    <div id="map-container"></div>
+    <span>公司地址：深圳市福田区红岭北路3001号先科激光大厦902室</span>
+  </div>
+</div>
+
+</body>
+<script src="http://webapi.amap.com/maps?v=1.3&key=6052758fe146d739d9e0eed03a503214"></script>
+<script src="js/vendor/jquery-3.3.1.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/map.js"></script>
+<script src="js/hideMenuAction.js"></script>
+</html>
