@@ -31,9 +31,10 @@ class Test:
     referenceUnits = 3.31
     rangeLOD = 0.59
     rangeUOD = 1.80
-
-
-
+    # 检测范围Units
+    dectionRangeL = 0.7
+    dectionRangeU = 50
+    unit = "U/ml"
 
 '''解决子窗口弹出卡死的问题(QDialog)'''
 class Main(QDialog):
@@ -42,13 +43,13 @@ class Main(QDialog):
     # 每一格的高度
     itemHeight = 25
     # 主表格宽
-    mainTableWidth = itemWidth * 12 + 20
+    mainTableWidth = itemWidth * 12 - 12
     # 主表格高
-    mainTableHeight = itemHeight * 24 + 27
+    mainTableHeight = itemHeight * 32 + 40
     # 窗口宽
-    windowWidth = itemWidth * 12 + 40
+    windowWidth = itemWidth * 12 + 28
     # 窗口高
-    windowHeight = itemHeight * 24 + 166
+    windowHeight = itemHeight * 32 + 188
 
     def __init__(self):
         super().__init__()
@@ -63,7 +64,7 @@ class Main(QDialog):
         self.head = QVBoxLayout()
 
         self.mainTable = QTableWidget(self)
-        self.bottomTable = QTableWidget(self)
+        self.bottomTable = QWidget()
 
         # 设置每一个Table的基本格式
         self.setHead()
@@ -71,11 +72,17 @@ class Main(QDialog):
         self.setMainTable(self.mainTable)
         self.setBottomTable(self.bottomTable)
 
+        printlayout = QVBoxLayout()
+        printlayout.addWidget(self.mainTable)
+        printlayout.addWidget(self.bottomTable)
+        self.printTable = QWidget()
+        self.printTable.setLayout(printlayout)
         # 通过QVBoxLayout添加元素
         self.vbox = QVBoxLayout()
         self.vbox.addLayout(self.head)
-        self.vbox.addWidget(self.mainTable)
-        self.vbox.addWidget(self.bottomTable)
+        # self.vbox.addWidget(self.mainTable)
+        # self.vbox.addWidget(self.bottomTable)
+        self.vbox.addWidget(self.printTable)
         self.vbox.setSpacing(0)
 
         # 设置样式表
@@ -92,12 +99,15 @@ class Main(QDialog):
         self.projectSettingButton.setFixedSize(100,40)
         self.list.setFixedSize(100,40)
         self.list.setStyleSheet("background-color:#ffffff")
+        # 更新按钮
+        self.cleanButton = QPushButton("清空")
+        self.cleanButton.setFixedSize(80, 40)
         # 打印按钮
         self.printButton = QPushButton("打印")
         self.printButton.setFixedSize(80,40)
         # 确认按钮
-        self.checkButton = QPushButton("确认")
-        self.checkButton.setFixedSize(80,40)
+        self.saveButton = QPushButton("保存")
+        self.saveButton.setFixedSize(80,40)
         headGroupBox = QGroupBox("选项")
         # 空白
         blank1 = QLabel("")
@@ -107,8 +117,12 @@ class Main(QDialog):
         # layout.addWidget(self.list, 0, 2)
         layout.addWidget(self.projectSettingButton, 0, 2)
         layout.addWidget(blank2, 0, 3)
-        layout.addWidget(self.printButton, 0, 4)
-        layout.addWidget(self.checkButton, 0, 5)
+        # 添加清空按钮
+        # layout.addWidget(self.cleanButton, 0, 4)
+        # 添加保存按钮
+        layout.addWidget(self.saveButton, 0, 5)
+        # 添加打印按钮
+        layout.addWidget(self.printButton, 0, 6)
         headGroupBox.setLayout(layout)
         self.head.addWidget(headGroupBox)
 
@@ -117,14 +131,16 @@ class Main(QDialog):
         self.list.addItems(["主界面", "项目设置"])
 
         # 绑定下拉列表选择事件
-        self.list.activated[str].connect(self.listSelectedEvent)
+        # self.list.activated[str].connect(self.listSelectedEvent)
 
         # 绑定项目设置按钮点击事件
         self.projectSettingButton.clicked.connect(self.projectSettingButtonEvent)
+        # 清空按钮
+        self.cleanButton.clicked.connect(self.cleanWindow)
         # 绑定打印按钮点击事件
         self.printButton.clicked.connect(self.printButtonEvent)
         # 绑定确定按钮点击事件
-        self.checkButton.clicked.connect(self.checkButtonEvent)
+        self.saveButton.clicked.connect(self.saveButtonEvent)
 
 
     # 设置主表格
@@ -134,29 +150,43 @@ class Main(QDialog):
         table.setFixedSize(self.mainTableWidth, self.mainTableHeight)
         # 设置表格有24行12列。
         table.setColumnCount(12)
-        table.setRowCount(24)
-        table.setVerticalHeaderLabels(["", "A", "", "", 'B', "",
-                                       "", 'C', "", "", 'D', "",
-                                       "", 'E', "", "", 'F', "",
-                                       "", 'G', "", "", 'H', ""])
-        for i in range(0,12):
+        table.setRowCount(32)
+        table.setVerticalHeaderLabels(["", "A", "", "", "", 'B', "", "",
+                                       "", 'C', "", "", "", 'D', "", "",
+                                       "", 'E', "", "", "", 'F', "", "",
+                                       "", 'G', "", "", "", 'H', "", ""])
+        for i in range(0, 12):
             # 设置格子宽
-            table.setColumnWidth(i, self.itemWidth)
+            if(i == 0):
+                table.setColumnWidth(i, 50)
+            else:
+                table.setColumnWidth(i, self.itemWidth)
             # 初始化格子
-            for j in range(0, 24):
-                if j % 3 == 0:
+            for j in range(0, 32):
+                if (j - 1) % 4 == 0 and i != 0:
                     self.setMainLineEdit(i, j, table)
-
+                elif j % 4 == 0 and i != 0:
+                    item = QLineEdit("")
+                    table.setCellWidget(j, i, item)
                 else:
-                    item = QTableWidgetItem("")
-                    table.setItem(j, i, item)
-                    # 灰白相间
-                    # if j in [0,1,2,
-                    #          6,7,8,
-                    #          12,13,14,
-                    #          18,19,20]:
-                    item.setBackground(QColor("#D3D3D3"))
-        for i in range(0,24):
+                    strr = ""
+                    if i == 0:
+                        if j % 4 == 0 :
+                            strr = "ID："
+                        elif (j - 1) % 4 == 0:
+                            strr = "OD："
+                        elif (j - 2) % 4 == 0:
+                            strr = "Units："
+                        else:
+                            strr = "Int.："
+                    item = QLabel(strr)
+                    table.setCellWidget(j, i, item)
+
+                    # item.setBackground(QColor("#D3D3D3"))
+                    item.setStyleSheet("background-color:#D3D3D3; border-left:1px solid black; border-right:1px solid black")
+                    if i == 0:
+                        item.setStyleSheet("background-color:#D3D3D3")
+        for i in range(0, 32):
             # 设置格子高
             table.setRowHeight(i, self.itemHeight)
 
@@ -169,29 +199,60 @@ class Main(QDialog):
     # 设置底部表格
     def setBottomTable(self, table):
         table.setFixedSize(self.mainTableWidth, self.itemHeight*2)
-        table.setStyleSheet('background-color:#C1BFFF')
+        table.setStyleSheet('background-color:#C1BFFF; border:1px solid #C18CFF')
+        layout = QGridLayout()
+        self.testName = QLabel("       试剂名：" + Test.Name)
+        self.testName.setStyleSheet("border:0")
+        self.testIgX = QLabel("     IgX：" + Test.IgX)
+        self.testIgX.setStyleSheet("border:0")
+        self.testLog = QLabel("     批号：" + Test.Lot)
+        self.testLog.setStyleSheet("border:0")
+        self.testUnit = QLabel("        单位：" + Test.unit + "        ")
+        self.testUnit.setStyleSheet("border:0")
+        self.testDectionRange = QLabel( "       检测范围检测范围：" + str(Test.dectionRangeL) + "---" + str(Test.dectionRangeU) + "       ")
+        self.testDectionRange.setStyleSheet("border:0")
+        self.testL = QLabel( "临界值范围（Utils）：" + str(Test.L) + "---" + str(Test.U) + "   ")
+        self.testL.setStyleSheet("border:0")
+        layout.addWidget(self.testName, 1, 0)
+        layout.addWidget(self.testIgX, 1, 1)
+        layout.addWidget(self.testLog, 1, 2)
+
+        layout.addWidget(self.testDectionRange, 1, 3)
+        layout.addWidget(self.testL, 1, 4)
+        layout.addWidget(self.testUnit, 1, 5)
+
+        # table.addLayout(layout)
+        table.setLayout(layout)
+        # table.addWidget(self.testName)
+        # table.addWidget(self.testIgX)
+        # table.addWidget(self.testLog)
+        # table.addWidget(self.testUnit)
+        # table.addWidget(self.testDectionRange)
+        # table.addWidget(self.testL)
+
 
     # 复选框设置
-    def listSelectedEvent(self, text):
-        if(text == "项目设置"):
-            if(hasOpenWindow.projectSetting == False):
-                hasOpenWindow.projectSetting = True
-                projectSettring = ProjectSetting()
-                projectSettring.show()
-                projectSettring.exec_()
+    # def listSelectedEvent(self, text):
+    #     if(text == "项目设置"):
+    #         if(hasOpenWindow.projectSetting == False):
+    #             hasOpenWindow.projectSetting = True
+    #             projectSettring = ProjectSetting()
+    #             projectSettring.show()
+    #             projectSettring.exec_()
+    #
+    #         else:
+    #             reply = QMessageBox.question(self, '警告', "项目设置已打开", QMessageBox.Yes)
 
-            else:
-                reply = QMessageBox.question(self, '警告', "项目设置已打开", QMessageBox.Yes)
     # 项目设置按钮点击事件
     def projectSettingButtonEvent(self):
         if (hasOpenWindow.projectSetting == False):
             hasOpenWindow.projectSetting = True
-            projectSettring = ProjectSetting()
+            projectSettring = ProjectSetting(self)
             projectSettring.show()
             projectSettring.exec_()
-
         else:
             reply = QMessageBox.question(self, '警告', "项目设置已打开", QMessageBox.Yes)
+
     def setCSS(self):
         self.setStyleSheet("QGroupBox{border-color:#ff0000}"
                            "QDialog{background-color:#C1BFFF;margin:0;padding:0}")
@@ -208,34 +269,70 @@ class Main(QDialog):
         # 计算Int的值
         Int = self.calcInt( od, units)
         # 输出units的值
-        if(units == ">max" or units == "<min" or units == "" or units == "请输入数字"):
-            self.mainTable.item(i + 1, j).setText( units )
+        if(units == ">max" or units == "<min" or units == "" or units == "请输入数字" or units == "无效的od值" or units == "</>"):
+            self.mainTable.cellWidget(i + 1, j).setText( " " + units )
         else:
-            self.mainTable.item(i + 1, j).setText( str( round(units,2) ) )
+            self.mainTable.cellWidget(i + 1, j).setText( " " + str( round(units,2) ) )
         # 输出Int.的值
-        self.mainTable.item(i + 2, j).setText( Int )
-    # 计算units
-    def calcUnits(self, od):
-        if(self.is_number(od) == False):
-            return "请输入数字"
-        od = float(od)
-        if(od == 0 or od == ""):
-            return ""
-        elif(Test.A == "" or Test.B == "" or Test.C == "" or Test.D == "" or Test.RV == "" or od-Test.BLK == 0):
-            return ""
-        elif(   ( (od-Test.BLK)*Test.RV / (Test.MV-Test.BLK) ) < Test.A   ):
-            return "<min"
-        elif(   ( (od-Test.BLK)*Test.RV / (Test.MV-Test.BLK) ) > Test.D   ):
-            return ">max"
-        else:
-            return math.exp(   Test.C - 1/Test.B*math.log(  (Test.D-Test.A) / ( (od-Test.BLK)* Test.RV/(Test.MV-Test.BLK)-Test.A ) - 1  )   )
+        self.mainTable.cellWidget(i + 2, j).setText( " " + Int )
 
+        if Int == "pos" :
+            self.mainTable.cellWidget(i + 2, j).setStyleSheet("color:red;background-color:#D3D3D3; border-left:1px solid black; border-right:1px solid black")
+        elif Int == "neg" :
+            self.mainTable.cellWidget(i + 2, j).setStyleSheet("color:#99CC00;background-color:#D3D3D3; border-left:1px solid black; border-right:1px solid black")
+        elif Int == "?" :
+            self.mainTable.cellWidget(i + 2, j).setStyleSheet("color:#FF9900;background-color:#D3D3D3; border-left:1px solid black; border-right:1px solid black")
+        else:
+            self.mainTable.cellWidget(i + 2, j).setStyleSheet("color:black;background-color:#D3D3D3; border-left:1px solid black; border-right:1px solid black")
+    # 计算units.
+    def calcUnits(self, od):
+        # 测试
+        # self.printTest()
+        try:
+            if (od == ""):
+                return ""
+            result = 0.10
+            if(self.is_number(od) == False):
+                return "请输入数字"
+            od = float(od)
+            print(od)
+            if(od < Test.rangeLOD):
+                return "无效的od值"
+            # if(Test.MV - Test.BLK == 0):
+            #     return "计算错误"
+            if(od == 0 or od == ""):
+                return ""
+            elif(Test.A == "" or Test.B == "" or Test.C == "" or Test.D == "" or Test.RV == "" or od-Test.BLK == 0):
+                return ""
+            # 计算公式更改
+            elif(   ( (od-Test.BLK)*Test.RV / (Test.MV-Test.BLK) ) < Test.A   ):
+                return "<min"
+            elif(   ( (od-Test.BLK)*Test.RV / (Test.MV-Test.BLK) ) > Test.D   ):
+                return ">max"
+            else:
+                # print("math.exp(   ", Test.C, "- 1/", Test.B, "*math.log(  (", Test.D, "-", Test.A, ") / ( (", od, "-", Test.BLK, ")* ", Test.RV, "/(", Test.MV, "-", Test.BLK, ")-", Test.A, ") - 1  )   )")
+                return math.exp(   Test.C - 1/Test.B*math.log(  (Test.D-Test.A) / ( (od-Test.BLK)* Test.RV/(Test.MV-Test.BLK)-Test.A ) - 1  )   )
+        # 计算公式更改
+        # if result < Test.dectionRangeL:
+        #     return "<min"
+        # elif result > Test.dectionRangeU:
+        #     return ">max"
+        # else:
+        #     return result
+        except:
+            return "</>"
     # 计算Int的值
     def calcInt(self, od , units):
+        if(od == ""):
+            return ""
+
+        if(units == "</>"):
+            return "</>"
         if(self.is_number(od) == False):
             return "请输入数字"
         od = float(od)
-
+        if (od < Test.rangeLOD):
+            return "无效的od值"
         if(od == 0 or units == "" or Test.L == "" or Test.U == ""):
             return ""
         elif(units == "<min"):
@@ -265,13 +362,30 @@ class Main(QDialog):
             pass
         return False
 
+    # 测试,输出Test类变量
+    def printTest(self):
+        print("L:", Test.L,
+              "U:", Test.U,
+              "referenceOD：", Test.referenceOD,
+              "referenceUnits：", Test.referenceUnits,
+              "rangeLOD：", Test.rangeLOD,
+              "rangeUOD：", Test.rangeUOD,
+              "A：", Test.A,
+              "B：", Test.B,
+              "C：", Test.C,
+              "D：", Test.D,
+              "STD1：", Test.STD1,
+              "STD2：", Test.STD2,
+              "BLK：", Test.BLK,
+              "RV：", Test.RV)
+
     # 打印按钮事件
     def printButtonEvent(self):
         printer = QPrinter(QPrinter.HighResolution)
         # 横向打印
         # printer.setPageOrientation(QPrinter.Landscape)
         # /* 打印预览 */
-        preview = QPrintPreviewDialog(printer, self.mainTable)
+        preview = QPrintPreviewDialog(printer, self.printTable)
         # 设置打印预览窗口大小
         preview.resize(1200, 900)
         """
@@ -289,12 +403,14 @@ class Main(QDialog):
         # printer.setPageMargins(12, 16, 12, 20, QPrinter.Millimeter)
 
         image = QPixmap()
-        image = self.mainTable.grab(QRect(QPoint(0, 0),
-                                  QSize(self.mainTable.size().width(),
-                                        self.mainTable.size().height()
+        image = self.printTable.grab(QRect(QPoint(0, 0),
+                                  QSize(self.printTable.size().width(),
+                                        self.printTable.size().height()
                                         )
                                   )
                             )  # /* 绘制窗口至画布 */
+
+
         # QRect
         rect = painter.viewport();
         # QSize
@@ -304,16 +420,57 @@ class Main(QDialog):
         painter.setWindow(image.rect());
         painter.drawPixmap(0, 0, image);  # /* 数据显示至预览界面 */
 
-    # 确认按钮事件
-    def checkButtonEvent(self):
-        print("check")
+    # 保存按钮事件
+    def saveButtonEvent(self):
+        image = QPixmap()
+        image = self.printTable.grab(QRect(QPoint(0, 0),
+                                           QSize(self.printTable.size().width(),
+                                                 self.printTable.size().height()
+                                                 )
+                                           )
+                                     )  # /* 绘制窗口至画布 */
+
+        savePath = QFileDialog.getSaveFileName(self, 'Save Your Paint', '.\\', '*.png')
+        print(savePath)
+        if savePath[0] == "":
+            print("Save cancel")
+            return
+        image.save(savePath[0])
         # 打印表格(0,0)的文本内容
         # print(self.mainTable.item(0,0).text())
 
     # 键盘监听事件
     # def keyPressEvent(self, QKeyEvent):
 
+    # 更新窗口
+    def updateWindow(self):
+        self.testName.setText("       试剂名：" + Test.Name)
+        self.testIgX.setText("     IgX：" + Test.IgX)
+        self.testLog.setText("     批号：" + Test.Lot)
+        self.testUnit.setText("        单位：" + Test.unit + "        ")
+        self.testDectionRange.setText("       检测范围检测范围：" + str(Test.dectionRangeL) + "---" + str(Test.dectionRangeU) + "       ")
+        self.testL.setText("临界值范围（Utils）：" + str(Test.L) + "---" + str(Test.U) + "   ")
+        # print("in")
 
+        # 查询那个od格子输入了数据，并计算
+        for i in range(0, 12):
+            for j in range(0, 32):
+                if (j - 1) % 4 == 0 and i != 0:
+                    if(self.mainTable.cellWidget(j, i).text() != ""):
+                        print("i="+str(i)+"  j="+str(j))
+                        array = [i, j]
+                        self.handeTextChange(array)
+    #
+    def cleanWindow(self):
+        print("清空")
+
+    # 窗口关闭事件
+    def closeEvent(self, QCloseEvent):
+        # 提示保存
+        reply = QMessageBox.question(self, '提示', "是否保存", QMessageBox.Yes, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            self.saveButtonEvent()
+        QCloseEvent.accept()
 '''项目设置窗口'''
 class ProjectSetting(QDialog):
     # 窗口宽
@@ -321,10 +478,11 @@ class ProjectSetting(QDialog):
     # 窗口高
     windowHeight = 550
 
-    def __init__(self):
+    def __init__(self, mainWindow):
         super().__init__()
         self.setupUI()
         self.setWindowFlags(Qt.WindowMaximizeButtonHint | Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
+        self.mainWindow = mainWindow
     def setupUI(self):
         # 設置窗口固定大小
         self.setFixedSize(self.windowWidth, self.windowHeight)
@@ -384,13 +542,13 @@ class ProjectSetting(QDialog):
         # 基本信息第二行数据
         # 边界线
         self.borderlineLabel = QLabel("边界线：")
-        self.borderlineLLineEdit = QLineEdit( str(Test.L) )
-        dottedLabel = QLabel(" - - - ")
-        self.borderLineULineEdit = QLineEdit( str(Test.U) )
+        # self.borderlineLLineEdit = QLineEdit( str(Test.L) )
+        # dottedLabel = QLabel(" - - - ")
+        # self.borderLineULineEdit = QLineEdit( str(Test.U) )
         # 单位
         self.unitLabel = QLabel("单位：")
         self.unitComboBox = QComboBox()
-        self.unitComboBox.addItems(["U/ml"])
+        self.unitComboBox.addItems(["U/ml", "IU/ml"])
 
         infolayout.setSpacing(10)
         # 添加第一行
@@ -402,12 +560,12 @@ class ProjectSetting(QDialog):
         infolayout.addWidget(self.batchLineEdit, 1, 5)
 
         # 添加第二行
-        infolayout.addWidget(self.borderlineLabel, 2, 0)
-        infolayout.addWidget(self.borderlineLLineEdit, 2, 1)
-        infolayout.addWidget(dottedLabel, 2, 2)
-        infolayout.addWidget(self.borderLineULineEdit, 2, 3)
-        infolayout.addWidget(self.unitLabel, 2, 4)
-        infolayout.addWidget(self.unitComboBox, 2, 5)
+        # infolayout.addWidget(self.borderlineLabel, 2, 0)
+        # infolayout.addWidget(self.borderlineLLineEdit, 2, 1)
+        # infolayout.addWidget(dottedLabel, 2, 2)
+        # infolayout.addWidget(self.borderLineULineEdit, 2, 3)
+        infolayout.addWidget(self.unitLabel, 2, 0)
+        infolayout.addWidget(self.unitComboBox, 2, 1)
 
         self.infoGroupBox.setLayout(infolayout)
         self.InfoVBox.addWidget(self.infoGroupBox)
@@ -499,19 +657,19 @@ class ProjectSetting(QDialog):
 
         # 第一行
         self.dectionRangeLabel = QLabel("检测范围(Units)：        ")
-        self.dectionRangeLineEdit1 = QLineEdit("0.7")
+        self.dectionRangeLineEdit1 = QLineEdit( str(Test.dectionRangeL) )
         # 虚线
         dottedLabel1 = QLabel("  - - -  ")
-        self.dectionRangeLineEdit2 = QLineEdit("50")
+        self.dectionRangeLineEdit2 = QLineEdit( str(Test.dectionRangeU) )
         # 空白
         blank = QLabel("                                       ")
 
         # 第二行
         self.criticalRangeLabel = QLabel("临界值范围(Units)：     ")
-        self.criticalRangeLineEdit1 = QLineEdit("1.4")
+        self.criticalRangeLineEdit1 = QLineEdit( str(Test.L) )
         # 虚线
         dottedLabel2 = QLabel("  - - -  ")
-        self.criticalRangeLineEdit2 = QLineEdit("2.6")
+        self.criticalRangeLineEdit2 = QLineEdit( str(Test.U) )
 
 
         # 添加第一行数据
@@ -579,11 +737,8 @@ class ProjectSetting(QDialog):
 
     # 保存按钮事件
     def saveButtonEvent(self):
+        noError = True
         warringMessage = ""
-        if(self.is_number( self.borderlineLLineEdit.text() ) == False):
-            warringMessage += "边界线最低值设置有误\n"
-        if(self.is_number( self.borderLineULineEdit.text() ) == False):
-            warringMessage += "边界线最高值设置有误\n"
         if (self.is_number(self.referenceODLineEdit.text()) == False):
             warringMessage += "参考OD值设置有误\n"
         if (self.is_number(self.referenceUnitsLineEdit.text()) == False):
@@ -608,14 +763,22 @@ class ProjectSetting(QDialog):
             warringMessage += "BLK值设置有误\n"
         if (self.is_number(self.RVLineEdit.text()) == False):
             warringMessage += "RV值设置有误\n"
+        if (self.is_number(self.dectionRangeLineEdit1.text()) == False):
+            warringMessage += "检测范围（Units）最低值设置有误\n"
+        if (self.is_number(self.dectionRangeLineEdit2.text()) == False):
+            warringMessage += "检测范围（Units）最高值设置有误\n"
+        if (self.is_number( self.criticalRangeLineEdit1.text() ) == False):
+            warringMessage += "临界值范围（Units）最低值设置有误\n"
+        if (self.is_number( self.criticalRangeLineEdit2.text() ) == False):
+            warringMessage += "临界值范围（Units）最高值设置有误\n"
         if(warringMessage == ""):
             Test.Name = self.reagenLineEdit.text()
             Test.IgX = self.igXLineEdit.text()
             # 批號
             Test.Lot = self.batchLineEdit.text()
             # 邊界綫
-            Test.L = float( self.borderlineLLineEdit.text() )
-            Test.U = float( self.borderLineULineEdit.text() )
+            Test.L = float( self.criticalRangeLineEdit1.text() )
+            Test.U = float( self.criticalRangeLineEdit2.text() )
             Test.referenceOD = float( self.referenceODLineEdit.text() )
             Test.referenceUnits = float( self.referenceUnitsLineEdit.text() )
             Test.rangeLOD = float( self.rangeODLineEdit1.text() )
@@ -628,9 +791,37 @@ class ProjectSetting(QDialog):
             Test.STD2 = float( self.STD2LineEdit.text() )
             Test.BLK = float( self.BLKLineEdit.text() )
             Test.RV = float( self.RVLineEdit.text() )
+            Test.dectionRangeL = float( self.dectionRangeLineEdit1.text() )
+            Test.dectionRangeU = float( self.dectionRangeLineEdit2.text() )
+            Test.MV =  (Test.STD1 + Test.STD2) / 2
+            # 单位
+            Test.unit = self.unitComboBox.currentText()
         # 如果有错误
         else:
-            reply = QMessageBox.question(self, '警告', warringMessage, QMessageBox.Yes)
+            noError = False
+            QMessageBox.question(self, '警告', warringMessage, QMessageBox.Yes)
+
+        if(noError):
+            reply = QMessageBox.question(self, "提示", "设置成功", QMessageBox.Yes)
+            self.mainWindow.updateWindow()
+        self.printTest()
+
+    # 测试,输出Test类变量
+    def printTest(self):
+        print("L:", Test.L,
+              "U:", Test.U,
+              "referenceOD：", Test.referenceOD,
+              "referenceUnits：", Test.referenceUnits,
+              "rangeLOD：", Test.rangeLOD,
+              "rangeUOD：", Test.rangeUOD,
+              "A：", Test.A,
+              "B：", Test.B,
+              "C：", Test.C,
+              "D：", Test.D,
+              "STD1：", Test.STD1,
+              "STD2：", Test.STD2,
+              "BLK：", Test.BLK,
+              "RV：", Test.RV)
 
     # 取消按钮事件
     def cancleButtonEvent(self):
@@ -641,15 +832,6 @@ class ProjectSetting(QDialog):
         hasOpenWindow.projectSetting = False
         QCloseEvent.accept()
 
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    main = Main()
-    main.show()
-    main.exec_()
-    app.exit()
-
-
 def is_number(num):
     pattern = re.compile(r'^[-+]?[-0-9]\d*\.\d*|[-+]?\.?[0-9]\d*$')
     result = pattern.match(num)
@@ -657,3 +839,10 @@ def is_number(num):
         return True
     else:
         return False
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    main = Main()
+    main.show()
+    main.exec_()
+    app.exit()
