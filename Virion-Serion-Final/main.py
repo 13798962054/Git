@@ -5,6 +5,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtPrintSupport import *
 import sys
 import math
+from PIL import Image
+import datetime
 # 正则
 import re
 
@@ -43,11 +45,11 @@ class Main(QDialog):
     # 每一格的高度
     itemHeight = 25
     # 主表格宽
-    mainTableWidth = itemWidth * 12 - 12
+    mainTableWidth = itemWidth * 13 - 12
     # 主表格高
     mainTableHeight = itemHeight * 32 + 40
     # 窗口宽
-    windowWidth = itemWidth * 12 + 28
+    windowWidth = itemWidth * 13 + 28
     # 窗口高
     windowHeight = itemHeight * 32 + 188
 
@@ -55,6 +57,10 @@ class Main(QDialog):
         super().__init__()
         self.setupUI()
         self.setWindowFlags(Qt.WindowMaximizeButtonHint | Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
+
+    def keyPressEvent(self, QKeyEvent):
+        print(QKeyEvent)
+
 
     def setupUI(self):
         self.setWindowTitle("维润简易评估软件")
@@ -102,12 +108,15 @@ class Main(QDialog):
         # 更新按钮
         self.cleanButton = QPushButton("清空")
         self.cleanButton.setFixedSize(80, 40)
+        # 补全ID
+        self.fullFillIdButton = QPushButton("补全ID")
+        self.fullFillIdButton.setFixedSize(80, 40)
         # 打印按钮
         self.printButton = QPushButton("打印")
-        self.printButton.setFixedSize(80,40)
+        self.printButton.setFixedSize(80, 40)
         # 确认按钮
         self.saveButton = QPushButton("保存")
-        self.saveButton.setFixedSize(80,40)
+        self.saveButton.setFixedSize(80, 40)
         headGroupBox = QGroupBox("选项")
         # 空白
         blank1 = QLabel("")
@@ -119,6 +128,8 @@ class Main(QDialog):
         layout.addWidget(blank2, 0, 3)
         # 添加清空按钮
         # layout.addWidget(self.cleanButton, 0, 4)
+        # 添加自动补全ID按钮
+        layout.addWidget(self.fullFillIdButton, 0, 4)
         # 添加保存按钮
         layout.addWidget(self.saveButton, 0, 5)
         # 添加打印按钮
@@ -137,6 +148,8 @@ class Main(QDialog):
         self.projectSettingButton.clicked.connect(self.projectSettingButtonEvent)
         # 清空按钮
         self.cleanButton.clicked.connect(self.cleanWindow)
+        # 自动补全ID按钮
+        self.fullFillIdButton.clicked.connect(self.fullFillIdButtonEvent)
         # 绑定打印按钮点击事件
         self.printButton.clicked.connect(self.printButtonEvent)
         # 绑定确定按钮点击事件
@@ -149,13 +162,14 @@ class Main(QDialog):
         # 固定主表格的大小
         table.setFixedSize(self.mainTableWidth, self.mainTableHeight)
         # 设置表格有24行12列。
-        table.setColumnCount(12)
+        table.setColumnCount(13)
         table.setRowCount(32)
         table.setVerticalHeaderLabels(["", "A", "", "", "", 'B', "", "",
                                        "", 'C', "", "", "", 'D', "", "",
                                        "", 'E', "", "", "", 'F', "", "",
                                        "", 'G', "", "", "", 'H', "", ""])
-        for i in range(0, 12):
+        table.setHorizontalHeaderLabels(["", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" ])
+        for i in range(0, 13):
             # 设置格子宽
             if(i == 0):
                 table.setColumnWidth(i, 50)
@@ -172,13 +186,13 @@ class Main(QDialog):
                     strr = ""
                     if i == 0:
                         if j % 4 == 0 :
-                            strr = "ID："
+                            strr = " ID:"
                         elif (j - 1) % 4 == 0:
-                            strr = "OD："
+                            strr = " OD:"
                         elif (j - 2) % 4 == 0:
-                            strr = "Units："
+                            strr = " Units:"
                         else:
-                            strr = "Int.："
+                            strr = " Int.:"
                     item = QLabel(strr)
                     table.setCellWidget(j, i, item)
 
@@ -193,6 +207,7 @@ class Main(QDialog):
     # 设置表格样式中的输入框
     def setMainLineEdit(self, i, j, table):
         item = QLineEdit("")
+        item.setStyleSheet("background-color:#60A6FF;color:#ffffff;font-weight:1000;font-size:20px")
         table.setCellWidget(j, i, item)
         arrayTemp = [i, j]
         item.textChanged.connect(lambda: self.handeTextChange(arrayTemp))
@@ -247,9 +262,9 @@ class Main(QDialog):
     def projectSettingButtonEvent(self):
         if (hasOpenWindow.projectSetting == False):
             hasOpenWindow.projectSetting = True
-            projectSettring = ProjectSetting(self)
-            projectSettring.show()
-            projectSettring.exec_()
+            self.projectSettring = ProjectSetting(self)
+            self.projectSettring.show()
+            self.projectSettring.exec_()
         else:
             reply = QMessageBox.question(self, '警告', "项目设置已打开", QMessageBox.Yes)
 
@@ -269,7 +284,7 @@ class Main(QDialog):
         # 计算Int的值
         Int = self.calcInt( od, units)
         # 输出units的值
-        if(units == ">max" or units == "<min" or units == "" or units == "请输入数字" or units == "无效的od值" or units == "</>"):
+        if(units == ">max" or units == "<min" or units == "" or units == "请输入数字" or units == "</>"):
             self.mainTable.cellWidget(i + 1, j).setText( " " + units )
         else:
             self.mainTable.cellWidget(i + 1, j).setText( " " + str( round(units,2) ) )
@@ -296,8 +311,6 @@ class Main(QDialog):
                 return "请输入数字"
             od = float(od)
             print(od)
-            if(od < Test.rangeLOD):
-                return "无效的od值"
             # if(Test.MV - Test.BLK == 0):
             #     return "计算错误"
             if(od == 0 or od == ""):
@@ -305,20 +318,20 @@ class Main(QDialog):
             elif(Test.A == "" or Test.B == "" or Test.C == "" or Test.D == "" or Test.RV == "" or od-Test.BLK == 0):
                 return ""
             # 计算公式更改
-            elif(   ( (od-Test.BLK)*Test.RV / (Test.MV-Test.BLK) ) < Test.A   ):
-                return "<min"
-            elif(   ( (od-Test.BLK)*Test.RV / (Test.MV-Test.BLK) ) > Test.D   ):
-                return ">max"
+            # elif(   ( (od-Test.BLK)*Test.RV / (Test.MV-Test.BLK) ) < Test.A   ):
+            #     return "<min"
+            # elif(   ( (od-Test.BLK)*Test.RV / (Test.MV-Test.BLK) ) > Test.D   ):
+            #     return ">max"
             else:
                 # print("math.exp(   ", Test.C, "- 1/", Test.B, "*math.log(  (", Test.D, "-", Test.A, ") / ( (", od, "-", Test.BLK, ")* ", Test.RV, "/(", Test.MV, "-", Test.BLK, ")-", Test.A, ") - 1  )   )")
                 return math.exp(   Test.C - 1/Test.B*math.log(  (Test.D-Test.A) / ( (od-Test.BLK)* Test.RV/(Test.MV-Test.BLK)-Test.A ) - 1  )   )
         # 计算公式更改
-        # if result < Test.dectionRangeL:
-        #     return "<min"
-        # elif result > Test.dectionRangeU:
-        #     return ">max"
-        # else:
-        #     return result
+            if result < Test.dectionRangeL:
+                return "<min"
+            elif result > Test.dectionRangeU:
+                return ">max"
+            else:
+                return result
         except:
             return "</>"
     # 计算Int的值
@@ -331,8 +344,6 @@ class Main(QDialog):
         if(self.is_number(od) == False):
             return "请输入数字"
         od = float(od)
-        if (od < Test.rangeLOD):
-            return "无效的od值"
         if(od == 0 or units == "" or Test.L == "" or Test.U == ""):
             return ""
         elif(units == "<min"):
@@ -381,6 +392,8 @@ class Main(QDialog):
 
     # 打印按钮事件
     def printButtonEvent(self):
+        # 打印排版
+
         printer = QPrinter(QPrinter.HighResolution)
         # 横向打印
         # printer.setPageOrientation(QPrinter.Landscape)
@@ -402,23 +415,90 @@ class Main(QDialog):
         # 设置纸张的边距
         # printer.setPageMargins(12, 16, 12, 20, QPrinter.Millimeter)
 
-        image = QPixmap()
-        image = self.printTable.grab(QRect(QPoint(0, 0),
-                                  QSize(self.printTable.size().width(),
-                                        self.printTable.size().height()
-                                        )
-                                  )
-                            )  # /* 绘制窗口至画布 */
+        # 打印页面的头
+        titleTable = QWidget()
+        titleLayout = QHBoxLayout()
+        titleLabel = QLabel("                          "
+                            "Test Evaluation with SERION activity")
+        titleLabel.setStyleSheet("font-size:24px")
+        iconLabel = QLabel("")
+        iconLabel.setFixedSize(80,40)
+        png = QPixmap("icon/logoTitle.png").scaled(80,40)
+        iconLabel.setPixmap(png)
+        # 维润图标
 
+        titleLayout.addWidget(titleLabel)
+        titleLayout.addWidget(iconLabel)
+        titleTable.setLayout(titleLayout)
+        titleTable.setFixedSize(self.printTable.size().width(), 60)
+        titleTable.setStyleSheet("background-color:#ffffff")
+        imageTitle = titleTable.grab(QRect(QPoint(0, 0),
+                                           QSize(titleTable.width(),titleTable.height())
+                                           )
+                                     )
+
+        # 打印页面的表格
+        image = self.printTable.grab(QRect(QPoint(0, 0),
+                                  QSize( self.printTable.size().width(),self.printTable.size().height() )
+                                           )
+                                    )  # /* 绘制窗口至画布 */
+
+        # 打印页面的底部
+        bottomTable = QWidget()
+        bottomLayout = QHBoxLayout()
+        now = datetime.datetime.now().strftime('%Y/%m/%d')
+        bottomLabel1 = QLabel("  " + now)
+        bottomLabel2 = QLabel("                "
+                              "Institut Virion\Serion GmbH")
+        bottomLabel3 = QLabel("                                              "
+                              "Version 12.0")
+        bottomLayout.addWidget(bottomLabel1)
+        bottomLayout.addWidget(bottomLabel2)
+        bottomLayout.addWidget(bottomLabel3)
+
+        bottomTable.setLayout(bottomLayout)
+        bottomTable.setFixedSize(self.printTable.size().width(), 60)
+        bottomTable.setStyleSheet("background-color:#ffffff")
+        imageBottom = bottomTable.grab(QRect(QPoint(0, 0),
+                                           QSize(bottomTable.width(), bottomTable.height())
+                                           )
+                                     )
 
         # QRect
         rect = painter.viewport();
         # QSize
         size = image.size();
         size.scale(rect.size(), Qt.KeepAspectRatio)  # //此处保证图片显示完整
-        painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
+        painter.setViewport(rect.x(), rect.y(), size.width(), size.height()*1.5);
         painter.setWindow(image.rect());
-        painter.drawPixmap(0, 0, image);  # /* 数据显示至预览界面 */
+        painter.setBackground(QColor("#ffffff"))
+        painter.drawPixmap(0, 0, imageTitle);
+        painter.drawPixmap(0, 60, image);  # /* 数据显示至预览界面 */
+        painter.drawPixmap(0, imageTitle.size().height() + image.size().height(), imageBottom);
+    def fullFillIdButtonEvent(self):
+        strr = self.mainTable.cellWidget(0,1).text()
+        if(strr == ""):
+            return
+        result_str = strr[:-1]
+        index = strr[-1]
+
+        if( self.is_number(index) ):
+            index = int(index)
+        else:
+            index = 0
+            result_str = self.mainTable.cellWidget(0,1).text()
+
+        print("index=" + str(index) + " result=" + result_str)
+        for i in range(1, 13):
+            for j in range(0, 32):
+                if j % 4 == 0:
+                    if(i==1 and j==0):
+                        continue
+                    index = index + 1
+                    current_index = index
+                    print(result_str + str(current_index))
+                    self.mainTable.cellWidget(j, i).setText(result_str + str(current_index))
+
 
     # 保存按钮事件
     def saveButtonEvent(self):
@@ -470,6 +550,8 @@ class Main(QDialog):
         reply = QMessageBox.question(self, '提示', "是否保存", QMessageBox.Yes, QMessageBox.No)
         if reply == QMessageBox.Yes:
             self.saveButtonEvent()
+
+        self.projectSettring.close()
         QCloseEvent.accept()
 '''项目设置窗口'''
 class ProjectSetting(QDialog):
@@ -739,14 +821,17 @@ class ProjectSetting(QDialog):
     def saveButtonEvent(self):
         noError = True
         warringMessage = ""
+        odRangeIsRight = True
         if (self.is_number(self.referenceODLineEdit.text()) == False):
             warringMessage += "参考OD值设置有误\n"
         if (self.is_number(self.referenceUnitsLineEdit.text()) == False):
             warringMessage += "参考Units值设置有误\n"
         if (self.is_number(self.rangeODLineEdit1.text()) == False):
             warringMessage += "有效范围(OD)最小值设置有误\n"
+            odRangeIsRight = False
         if (self.is_number(self.rangeODLineEdit2.text()) == False):
             warringMessage += "有效范围(OD)最大值设置有误\n"
+            odRangeIsRight = False
         if (self.is_number(self.aLineEdit.text()) == False):
             warringMessage += "A值设置有误\n"
         if (self.is_number(self.bLineEdit.text()) == False):
@@ -757,8 +842,12 @@ class ProjectSetting(QDialog):
             warringMessage += "D值设置有误\n"
         if (self.is_number(self.STD1LineEdit.text()) == False):
             warringMessage += "STD1值设置有误\n"
+        elif(odRangeIsRight and float(self.STD1LineEdit.text()) < float(self.rangeODLineEdit1.text())):
+            warringMessage += "STD1值小于有效范围(OD)最小值\n"
         if (self.is_number(self.STD2LineEdit.text()) == False):
             warringMessage += "STD2值设置有误\n"
+        elif(odRangeIsRight and float(self.STD2LineEdit.text()) > float(self.rangeODLineEdit2.text())):
+            warringMessage += "STD2值大于有效范围(OD)最大值\n"
         if (self.is_number(self.BLKLineEdit.text()) == False):
             warringMessage += "BLK值设置有误\n"
         if (self.is_number(self.RVLineEdit.text()) == False):
@@ -804,7 +893,9 @@ class ProjectSetting(QDialog):
         if(noError):
             reply = QMessageBox.question(self, "提示", "设置成功", QMessageBox.Yes)
             self.mainWindow.updateWindow()
-        self.printTest()
+            if reply == QMessageBox.Yes:
+                self.close()
+        # self.printTest()
 
     # 测试,输出Test类变量
     def printTest(self):
