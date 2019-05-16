@@ -1,0 +1,5 @@
+INSERT INTO `dede_downloads` VALUES('bfa89e563d9509fbc5c6503dd50faf2e','0','92');
+INSERT INTO `dede_downloads` VALUES('d41d8cd98f00b204e9800998ecf8427e','0','845');
+INSERT INTO `dede_downloads` VALUES('1b9d64f92e36860eced9d68ba7b74708','0','2');
+INSERT INTO `dede_downloads` VALUES('a9b9f04336ce0181a08e774e01113b31','0','3');
+INSERT INTO `dede_downloads` VALUES('1f8c2d0060b0900c376009328ea551da','0','4');

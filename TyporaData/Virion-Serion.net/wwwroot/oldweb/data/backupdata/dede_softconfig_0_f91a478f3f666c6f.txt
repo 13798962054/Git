@@ -1,0 +1,1 @@
+INSERT INTO `dede_softconfig` VALUES('0','0','1','0','','<p>\r\n	?维润赛润.深圳</p>\r\n','1','0','0','2');

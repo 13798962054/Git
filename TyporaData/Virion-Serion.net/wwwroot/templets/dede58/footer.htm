@@ -1,0 +1,40 @@
+<div class="footer">
+  <div class="footer_top">
+    <div class="container clearfix"> {dede:channelartlist typeid='top' row=4}
+      <ul>
+        <li class="footli1">
+          <h3><a href="{dede:field name='typeurl'/}">{dede:field name='typename'/}</a></h3>
+        </li>
+        {dede:channel type='son' noself='yes'}
+        <li><a href="[field:typelink/]">[field:typename/]</a></li>
+        {/dede:channel}
+      </ul>
+      {/dede:channelartlist}
+      <ul>
+        <li class="footli1">
+          <h3>{dede:type typeid='26'}<a href="[field:typelink/]">[field:typename/]</a>{/dede:type}</h3>
+        </li>
+        <li>
+<img src="/skin/images/wei_img.png" width="95" height="95" alt=""/>
+</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer_bottom">
+    <div class="container clearfix">
+      <div class="fl">
+        <p class="fl">{dede:global.cfg_powerby/} {dede:global.cfg_beian/}</p>
+      </div>
+<!--
+      <div class="link fr"> 友情链接
+        <ul>
+          {dede:flink titlelen='202' row='20' type='text'}
+          <li>[field:link /]</li>
+          {/dede:flink}
+          <li><a href="#" target="_blank">技术支持</a></li>
+        </ul>
+      </div>
+-->
+    </div>
+  </div>
+</div>

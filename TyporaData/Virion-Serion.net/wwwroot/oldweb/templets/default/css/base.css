@@ -1,0 +1,198 @@
+
+/*来自dede58.com*/
+
+
+*{ margin:0;padding:0;}
+
+
+
+
+
+*html body{ overflow:visible;}
+
+*html iframe, *html frame{ overflow:auto;}
+
+*html frameset{ overflow:hidden;}
+
+
+
+
+
+body{ color:#000; background:#FFF; font:12px/22px Verdana,Arial,sans-serif,"Times New Roman",'微软雅黑','宋体'; text-align:center;-webkit-text-size-adjust:100%;}
+
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,tr{ margin:0; padding:0;}
+
+input,select{ font-size:12px; vertical-align:middle;}
+
+
+
+
+
+body div{ text-align:left;}
+
+
+
+
+
+textarea,input{ word-wrap:break-word; word-break:break-all; padding:0px;}
+
+
+
+
+
+li{ list-style-type:none;}
+
+
+
+
+
+img{ border:0 none;}
+
+
+
+
+
+a:link, a:visited{text-decoration:none;}
+
+a:hover{text-decoration:underline;}
+
+
+
+
+
+a { outline:none; star:expression(this.onFocus=this.blur());}
+
+
+
+
+
+h1{ font-size:24px;}
+
+h2{ font-size:20px;}
+
+h3{ font-size:18px;}
+
+h4{ font-size:16px;}
+
+h5{ font-size:14px;}
+
+h6{ font-size:12px;}
+
+
+
+
+
+
+
+
+
+.pointer{ cursor:pointer;}
+
+
+
+
+
+.NoBorder{ border:0 none;}
+
+
+
+
+
+.t_l{ text-align:left;}
+
+.t_c{ text-align:center;}
+
+.t_r{ text-align:right;}
+
+
+
+
+
+.Break{ word-break:break-all; word-wrap:break-word;}
+
+.Nobreak{ word-break:keep-all; word-wrap:normal;}
+
+
+
+
+
+.FL{ float:left;}
+
+.FR{ float:right;}
+
+
+
+
+
+.UnLine{ text-decoration:underline;}
+
+.DisunLine{ text-decoration:none;}
+
+
+
+
+
+.absolute{ position:absolute;}
+
+.relative{ position:relative;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container{ width:980px;}
+
+.wrapper{ clear:both; overflow:hidden;}
+
+
+
+
+
+.o-hidden{ overflow:hidden;}
+
+
+
+
+
+.invisible{ visibility:hidden;}
+
+
+
+
+
+.hidden{ display:none;}
+
+.block{ display:block;}
+
+
+
+
+
+
+
+
+
+
+
+.clear{ clear:both; height:0px; content:'.';font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
+
+.cl:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+
+.cl{zoom:1;}
+
+
+
+/*来自dede58.com*/
+
+
+
+
+

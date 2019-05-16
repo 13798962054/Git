@@ -1,0 +1,1 @@
+<li class="clearfix"><a href="[field:arcurl/]" class="fl">[field:title/]</a><font class="fr">[field:pubdate function="MyDate('Y-m-d',@me)"/]</font></li>

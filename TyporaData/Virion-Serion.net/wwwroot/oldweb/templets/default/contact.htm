@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={dede:global.cfg_soft_lang/}" />
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<meta name="author" content="dede58" />
+<link  href="{dede:global.cfg_templets_skin/}/css/health_style.css"  rel="stylesheet"  type="text/css">
+<script  type="text/javascript"  src="{dede:global.cfg_templets_skin/}/js/code.js"></script>
+<script  type="text/javascript"  src="{dede:global.cfg_templets_skin/}/js/jquery.backstretch.js"></script>
+
+<script  type="text/javascript"  language="javascript">
+
+    //加入收藏
+
+    function AddFavorite(sURL, sTitle) {
+
+            sURL = encodeURI(sURL);
+
+        try{
+
+            window.external.addFavorite(sURL, sTitle);
+
+        }catch(e) {
+
+            try{
+
+                window.sidebar.addPanel(sTitle, sURL, "{dede:global.cfg_indexurl/}");
+
+            }catch (e) {
+
+                alert("加入收藏失败，请使用Ctrl+D进行添加,或手动在浏览器里进行设置.");
+
+            }
+
+        }
+
+    }
+
+    //设为首页
+
+    function SetHome(url){
+
+        if (document.all) {
+
+            document.body.style.behavior='url({dede:global.cfg_indexurl/})';
+
+               document.body.setHomePage(url);
+
+        }else{
+
+            alert("您好,您的浏览器不支持自动设置页面为首页功能,请您手动在浏览器里设置该页面为首页!");
+
+        }
+
+    }
+
+</script>
+
+</head>
+
+<body>
+
+	{dede:include filename="head.htm"/}
+
+<script  type="text/javascript">
+
+$(function(){
+
+	$(window).resize(function(){
+
+		$('.main').height($(window).height()-250);
+
+	}).resize();
+
+	$('.main').backstretch(["/templets/default/img/contact_bg.jpg"]);
+
+})
+
+</script>
+
+	<div  class="main"><div  class="backstretch" ></div></div>
+
+	<div  class="in_bg">
+
+		<div  class="container con">
+
+			<div  class="contact sub_con">
+
+				<div  class="title">
+
+					当前位置：{dede:field name='position'/}
+
+				</div>
+
+				<div  class="content">
+
+				{dede:field.content/}
+				</div>
+
+			</div>
+
+		</div>
+
+		<br><br><br>
+
+	</div>
+
+	{dede:include filename="footer.htm"/}
+
+    
+
+<!--来自www.dede58.com-->
+
+</body></html>

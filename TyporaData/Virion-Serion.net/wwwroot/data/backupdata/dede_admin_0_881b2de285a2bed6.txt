@@ -1,0 +1,1 @@
+INSERT INTO `dede_admin` VALUES('1','10','admin','df549c5466802c21d185','WrsR','管理员','vip_qcg@163.com','','1551149388','113.118.5.90');

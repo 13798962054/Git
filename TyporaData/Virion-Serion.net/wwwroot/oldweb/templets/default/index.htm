@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={dede:global.cfg_soft_lang/}" />
+<title>{dede:global.cfg_webname/}</title>
+<meta name="description" content="{dede:global.cfg_description/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<meta name="author" content="dede58.com" />
+<link  href="{dede:global.cfg_templets_skin/}/css/health_style.css"  rel="stylesheet"  type="text/css">
+<script  type="text/javascript"  src="{dede:global.cfg_templets_skin/}/js/code.js"></script>
+<script  type="text/javascript"  src="{dede:global.cfg_templets_skin/}/js/jquery.backstretch.js"></script>
+<script  type="text/javascript"  language="javascript">
+
+    //加入收藏
+
+    function AddFavorite(sURL, sTitle) {
+
+            sURL = encodeURI(sURL);
+
+        try{
+
+            window.external.addFavorite(sURL, sTitle);
+
+        }catch(e) {
+
+            try{
+
+                window.sidebar.addPanel(sTitle, sURL, "{dede:global.cfg_indexurl/}");
+
+            }catch (e) {
+
+                alert("加入收藏失败，请使用Ctrl+D进行添加,或手动在浏览器里进行设置.");
+
+            }
+
+        }
+
+    }
+
+    //设为首页
+
+    function SetHome(url){
+
+        if (document.all) {
+
+            document.body.style.behavior='url({dede:global.cfg_indexurl/})';
+
+               document.body.setHomePage(url);
+
+        }else{
+
+            alert("您好,您的浏览器不支持自动设置页面为首页功能,请您手动在浏览器里设置该页面为首页!");
+
+        }
+
+    }
+
+</script>
+</head>
+
+<body>
+
+{dede:include filename="head_i.htm"/}
+<script  type="text/javascript">
+
+	$(function(){
+
+		var timerID;
+
+		$(window).resize(function(){
+
+			$('.main,.in_bg').height($(window).height()-250);
+
+		}).resize();
+
+		$('.main').backstretch("/templets/default/img/banner_1.jpg",{speed: 500,fade: 750,duration: 4000});
+
+		$('.in_sevice ul').carouFredSel({
+
+	        auto: {
+
+	            timeoutDuration:4000
+
+	        },
+
+	        circular: true,
+
+	        infinite: false,
+
+	        scroll:"easeInOutCirc",
+
+	        pagination: {
+
+	            container:".in_s_page",
+
+	            anchorBuilder:function( nr ) {
+
+	                return "<a href='javascript:;'></a>";
+
+	            }
+
+	        }
+
+	    });
+
+	    $i=1;
+
+	    run();
+
+	    $('.in_prev').click(function(){
+
+	    	clearInterval(timerID);
+
+	    	$i--;
+
+	    	$i = $i <= 1 ? $i = 1 :$i ;
+
+	    	$('.main').backstretch("/templets/default/img/banner_"+$i+".jpg",{speed: 500,fade: 750,duration: 4000});
+
+	    	$('.backstretch').eq(0).remove();
+
+	    	run();
+
+	    });
+
+	    $('.in_next').click(function(){
+
+	    	clearInterval(timerID);
+
+	    	$i++;
+
+	    	$i = $i > 3 ? $i = 3 :$i ;
+
+	    	$('.main').backstretch("/templets/default/img/banner_"+$i+".jpg",{speed: 500,fade: 750,duration: 4000});
+
+	    	$('.backstretch').eq(0).remove();
+
+	    	run();
+
+	    });
+
+	    function run(){
+
+			timerID = setInterval(function(){
+
+		    	$i++;
+
+		    	$i = $i > 3 ? $i = 1 :$i ;
+
+		    	$('.main').backstretch("/templets/default/img/banner_"+$i+".jpg",{speed: 500,fade: 750,duration: 4000});
+
+		    	$('.backstretch').eq(0).remove();
+
+		    },8000);
+
+		}
+
+	})
+
+</script>
+<div  class="main"  >
+  <div  class="backstretch" ></div>
+</div>
+<div  class="in_bg"  style="height: 674px;"> <a  href="#"  class="in_prev"></a> <a  href="#"  class="in_next"></a>
+  <div  class="in_con container">
+    <div  class="in_about">
+      <div  class="title">关于我们</div>
+      <p><img  src="/templets/default/img/pic3.jpg"><b  style="font-size:14px;display:block;"><a  href="/a/about"  style="color:#FFFFFF;">维润赛润生物技术（深圳）有限公司</a></b>公司作为体外诊断学领域的权威机构，在自有实验室里制造所有的抗原，不依赖任何供货商......</p>
+    </div>
+    <div  class="in_sevice">
+      <div  class="caroufredsel_wrapper" >
+        <ul>
+        
+        {dede:arclist row=4 typeid='2' orderby=pubdate type='image.' imgwidth='280' imgheight='160'}
+          <li><a  href="[field:arcurl/]"  target="_blank">[field:image/]</a>
+            <p><a  href="[field:arcurl/]"  target="_blank">[field:title/]</a></p>
+          </li>
+        {/dede:arclist}
+          
+        </ul>
+      </div>
+      <div  class="in_s_page"  style="display: block;"> <a  href="javascript:;"  class=""></a><a  href="javascript:;"  class="selected"></a><a  href="javascript:;"  class=""></a><a  href="javascript:;"  class=""></a></div>
+    </div>
+    <div  class="in_news">
+      <ul>
+        {dede:arclist typeid='4' row=2 titlelen='20' infolen='34' orderby=pubdate type='image.' imgwidth='52' imgheight='52'}
+        <li><a  href="[field:arcurl/]"  target="_blank">[field:image/]</a>
+          <p><a  href="[field:arcurl/]"  target="_blank">[field:title/]…</a></p>
+          <p>[field:info/]…</p>
+        </li>
+        {/dede:arclist}
+        
+      </ul>
+    </div>
+  </div>
+</div>
+{dede:include filename="footer.htm"/}
+
+
+</body>
+</html>

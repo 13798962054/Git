@@ -1,0 +1,13 @@
+<?php
+//----------------------------
+//以下为手工指定的混淆串
+//----------------------------
+#start#
+#,virion-serion.net
+#,本文来自维润赛润深圳
+#,virion-serion.net
+#,本文来自维润赛润深圳
+#,virion-serion.net
+#,virion-serion.net
+#end#
+?>

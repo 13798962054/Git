@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>维润赛润生物技术（深圳）有限公司</title>
+<meta name="description" content="维润赛润生物技术（深圳）有限公司是德国维润赛润技术有限公司在中国设立的唯一合资子公司，是中国境内唯一具有签订维润赛润产品销售和服务授权协议的公司，公司于2016年1月1日正式运营，全面负责中国境内所有经销渠道的管理、产品销售、产品生产、技术服务和产品咨询。" />
+<meta name="keywords" content="维润赛润  维润  赛润   生物技术   检测" />
+<meta name="author" content="dede58.com" />
+<link  href="/templets/default/css/health_style.css"  rel="stylesheet"  type="text/css">
+<script  type="text/javascript"  src="/templets/default/js/code.js"></script>
+<script  type="text/javascript"  src="/templets/default/js/jquery.backstretch.js"></script>
+<script  type="text/javascript"  language="javascript">
+
+    //加入收藏
+
+    function AddFavorite(sURL, sTitle) {
+
+            sURL = encodeURI(sURL);
+
+        try{
+
+            window.external.addFavorite(sURL, sTitle);
+
+        }catch(e) {
+
+            try{
+
+                window.sidebar.addPanel(sTitle, sURL, "/");
+
+            }catch (e) {
+
+                alert("加入收藏失败，请使用Ctrl+D进行添加,或手动在浏览器里进行设置.");
+
+            }
+
+        }
+
+    }
+
+    //设为首页
+
+    function SetHome(url){
+
+        if (document.all) {
+
+            document.body.style.behavior='url(/)';
+
+               document.body.setHomePage(url);
+
+        }else{
+
+            alert("您好,您的浏览器不支持自动设置页面为首页功能,请您手动在浏览器里设置该页面为首页!");
+
+        }
+
+    }
+
+</script>
+</head>
+
+<body>
+
+<div  class="top">
+  <div  class="container"> <a  href="/"  class="logo"><img src="/templets/default/img/logo12.png"></a>
+    <div  class="top_text"><a   href="javascript:void(0)">设为首页</a><span></span><a   href="javascript:void(0)">收藏本站</a></div>
+    <ul  class="menu">
+      <li><a  href="/"  class="selected">网站首页</a></li>
+        
+      	<li><a href='/a/about/' >关于我们</a></li>
+      	
+      	<li><a href='/a/service/' >服务项目</a></li>
+      	
+      	<li><a href='/a/share/' >分享中心</a></li>
+      	
+      	<li><a href='/a/news/' >新知</a></li>
+      	
+      	<li><a href='/a/contact/' >联系我们</a></li>
+      	
+    </ul>
+  </div>
+</div>
+<script  type="text/javascript">
+
+	$(function(){
+
+		var timerID;
+
+		$(window).resize(function(){
+
+			$('.main,.in_bg').height($(window).height()-250);
+
+		}).resize();
+
+		$('.main').backstretch("/templets/default/img/banner_1.jpg",{speed: 500,fade: 750,duration: 4000});
+
+		$('.in_sevice ul').carouFredSel({
+
+	        auto: {
+
+	            timeoutDuration:4000
+
+	        },
+
+	        circular: true,
+
+	        infinite: false,
+
+	        scroll:"easeInOutCirc",
+
+	        pagination: {
+
+	            container:".in_s_page",
+
+	            anchorBuilder:function( nr ) {
+
+	                return "<a href='javascript:;'></a>";
+
+	            }
+
+	        }
+
+	    });
+
+	    $i=1;
+
+	    run();
+
+	    $('.in_prev').click(function(){
+
+	    	clearInterval(timerID);
+
+	    	$i--;
+
+	    	$i = $i <= 1 ? $i = 1 :$i ;
+
+	    	$('.main').backstretch("/templets/default/img/banner_"+$i+".jpg",{speed: 500,fade: 750,duration: 4000});
+
+	    	$('.backstretch').eq(0).remove();
+
+	    	run();
+
+	    });
+
+	    $('.in_next').click(function(){
+
+	    	clearInterval(timerID);
+
+	    	$i++;
+
+	    	$i = $i > 3 ? $i = 3 :$i ;
+
+	    	$('.main').backstretch("/templets/default/img/banner_"+$i+".jpg",{speed: 500,fade: 750,duration: 4000});
+
+	    	$('.backstretch').eq(0).remove();
+
+	    	run();
+
+	    });
+
+	    function run(){
+
+			timerID = setInterval(function(){
+
+		    	$i++;
+
+		    	$i = $i > 3 ? $i = 1 :$i ;
+
+		    	$('.main').backstretch("/templets/default/img/banner_"+$i+".jpg",{speed: 500,fade: 750,duration: 4000});
+
+		    	$('.backstretch').eq(0).remove();
+
+		    },8000);
+
+		}
+
+	})
+
+</script>
+<div  class="main"  >
+  <div  class="backstretch" ></div>
+</div>
+<div  class="in_bg"  style="height: 674px;"> <a  href="#"  class="in_prev"></a> <a  href="#"  class="in_next"></a>
+  <div  class="in_con container">
+    <div  class="in_about">
+      <div  class="title">关于我们</div>
+      <p><img  src="/templets/default/img/pic3.jpg"><b  style="font-size:14px;display:block;"><a  href="/a/about"  style="color:#FFFFFF;">维润赛润生物技术（深圳）有限公司</a></b>公司作为体外诊断学领域的权威机构，在自有实验室里制造所有的抗原，不依赖任何供货商......</p>
+    </div>
+    <div  class="in_sevice">
+      <div  class="caroufredsel_wrapper" >
+        <ul>
+        
+        <li><a  href="/a/service/2016/0215/13.html"  target="_blank"><img src='/uploads/allimg/160215/1-160215110SQ94-lp.JPG' border='0' width='280' height='160' alt='单纯疱疹病毒1/2型（混合型）IgA/IgM/IgG抗体定量检'></a>
+            <p><a  href="/a/service/2016/0215/13.html"  target="_blank"><strong>单纯疱疹病毒1/2型（混合</strong></a></p>
+          </li>
+<li><a  href="/a/service/2016/0215/16.html"  target="_blank"><img src='/uploads/allimg/160215/1-160215110F5558-lp.png' border='0' width='280' height='160' alt='水痘-带状疱疹病毒IgA/IgG/IgM抗体检测试剂盒（酶'></a>
+            <p><a  href="/a/service/2016/0215/16.html"  target="_blank"><strong>水痘-带状疱疹病毒IgA/Ig</strong></a></p>
+          </li>
+<li><a  href="/a/service/2016/0215/12.html"  target="_blank"><img src='/uploads/allimg/160215/1-1602151105223G-lp.jpg' border='0' width='280' height='160' alt='单纯疱疹病毒2型IgM/IgG抗体定量检测试剂盒（酶联'></a>
+            <p><a  href="/a/service/2016/0215/12.html"  target="_blank"><strong>单纯疱疹病毒2型IgM/IgG抗体</strong></a></p>
+          </li>
+<li><a  href="/a/service/2016/0215/11.html"  target="_blank"><img src='/uploads/allimg/160215/1-16021510131DW-lp.JPG' border='0' width='280' height='160' alt='单纯疱疹病毒1型IgM/IgG抗体定量检测试剂盒（酶联'></a>
+            <p><a  href="/a/service/2016/0215/11.html"  target="_blank"><strong>单纯疱疹病毒1型IgM/IgG抗体</strong></a></p>
+          </li>
+
+          
+        </ul>
+      </div>
+      <div  class="in_s_page"  style="display: block;"> <a  href="javascript:;"  class=""></a><a  href="javascript:;"  class="selected"></a><a  href="javascript:;"  class=""></a><a  href="javascript:;"  class=""></a></div>
+    </div>
+    <div  class="in_news">
+      <ul>
+        <li><a  href="/a/news/2016/0128/9.html"  target="_blank"><img src='/uploads/allimg/160128/1-16012Q32230326-lp.png' border='0' width='52' height='52' alt='体外诊断行业（IVD）入门篇'></a>
+          <p><a  href="/a/news/2016/0128/9.html"  target="_blank">体外诊断行业（…</a></p>
+          <p>IVD是指在人体之外通过对人体…</p>
+        </li>
+
+        
+      </ul>
+    </div>
+  </div>
+</div>
+<div  class="footer">
+  <div  class="container"> <span  class="copyright">Copyright &copy; 2016-2020 维润赛润               备案号：粤ICP备16001200号-1</span>  </div>
+</div>
+
+
+</body>
+</html>

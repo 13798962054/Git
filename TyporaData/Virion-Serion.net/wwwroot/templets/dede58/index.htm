@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Shortcut Icon" href="images/favicon.ico" />
+<link rel="Bookmark" href="images/favicon.ico" />
+<title>{dede:global.cfg_webname/}</title>
+<meta name="description" content="{dede:global.cfg_description/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<meta name="author" content="www.virion-serion.net" />
+<link href="/skin/css/base.css" type="text/css" rel="stylesheet" />
+<link href="/skin/css/common.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+{dede:include filename="head.htm"/}
+<div class="banner">
+  <div id="slideBox" class="slideBox">
+    <div class="hd">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="bd">
+      <ul>
+        <li><a style="background:url(/skin/images/2015-05-219374.jpg) no-repeat center top;"></a></li>
+        <li><a style="background:url(/skin/images/2015-05-219139.jpg) no-repeat center top;"></a></li>
+        <li><a  style="background:url(/skin/images/2015-04-224159.jpg) no-repeat center top;"></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="index_news">
+  <div class="container clearfix">
+    <div class="inn_tit fl">通知公告</div>
+    <div class="txtScroll-top">
+      <div class="hd"> <a class="prev" href="javascript:void();"></a> <a class="next" href="javascript:void();"></a> </div>
+      <div class="bd">
+        <ul class="infoList">
+          {dede:arclist row=10 titlelen=60   typeid='7'}
+          <li><span class="date">[field:pubdate function="MyDate('m-d',@me)"/] </span><b>/</b><a href="[field:arcurl/]">[field:title/]</a></li>
+          {/dede:arclist}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="index_p">
+  <div class="container"> {dede:type typeid='10'}
+    <div class="indexp_tit">
+      <h3><a href="[field:typelink/]">products</a></h3>
+      <h4><a href="[field:typelink/]">产品介绍</a></h4>
+    </div>
+    {/dede:type}
+    <div class="picScroll-left">
+      <div class="hd"> <a class="next"></a> <a class="prev"></a> </div>
+      <div class="bd">
+        <ul class="picList clearfix">
+          {dede:type typeid='28'}
+          <li> <a href="[field:typelink/]"> <img src="/skin/images/28.jpg" width="218" height="134" alt=""/>
+            <h3>[field:typename/] </h3>
+            <h4>virion/serion</h4>
+            <span></span>
+            <div class="ico_bg"></div>
+            </a> </li>
+          {/dede:type}
+          {dede:type typeid='29'}
+          <li> <a href="[field:typelink/]"> <img src="/skin/images/29.jpg" width="218" height="134" alt=""/>
+            <h3>[field:typename/]</h3>
+            <h4>virion/serion</h4>
+            <span></span>
+            <div class="ico_bg"></div>
+            </a> </li>
+          {/dede:type}
+          {dede:type typeid='30'}
+          <li> <a href="[field:typelink/]"> <img src="/skin/images/30.jpg" width="218" height="134" alt=""/>
+            <h3>[field:typename/]</h3>
+            <h4>virion/serion</h4>
+            <span></span>
+            <div class="ico_bg"></div>
+            </a> </li>
+          {/dede:type}
+          {dede:type typeid='31'}
+          <li> <a href="[field:typelink/]"> <img src="/skin/images/31.png" width="218" height="134" alt=""/>
+            <h3>[field:typename/]</h3>
+            <h4>virion/serion</h4>
+            <span></span>
+            <div class="ico_bg"></div>
+            </a> </li>
+          {/dede:type}
+          {dede:type typeid='32'}
+          <li> <a href="[field:typelink/]"> <img src="/skin/images/32.jpg" width="218" height="134" alt=""/>
+            <h3>[field:typename/]</h3>
+            <h4>virion/serion</h4>
+            <span></span>
+            <div class="ico_bg"></div>
+            </a> </li>
+          {/dede:type}
+          {dede:type typeid='33'}
+          <li> <a href="[field:typelink/]"> <img src="/skin/images/33.jpg" width="218" height="134" alt=""/>
+            <h3>[field:typename/]</h3>
+            <h4>virion/serion</h4>
+            <span></span>
+            <div class="ico_bg"></div>
+            </a> </li>
+          {/dede:type}
+          {dede:type typeid='34'}
+          <li> <a href="[field:typelink/]"> <img src="/skin/images/34.jpg" width="218" height="134" alt=""/>
+            <h3>[field:typename/]</h3>
+            <h4>virion/serion</h4>
+            <span></span>
+            <div class="ico_bg"></div>
+            </a> </li>
+          {/dede:type}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="index_b">
+  <div class="container">
+    <div class="indexbm clearfix">
+      <div class="index_1 fl"> {dede:type typeid='18'}
+        <div class="indexb_tit">
+          <h3><a href="[field:typelink/]">case</a></h3>
+          <h4><a href="[field:typelink/]">[field:typename/]</a></h4>
+        </div>
+        {/dede:type}
+<!--
+        <div id="slideBox" class="slideBox">
+          <div class="bd">
+            <ul>
+              {dede:arclist typeid='18' row=3 titlelen=40}
+              <li><a href="[field:arcurl/]"><img src="[field:picname/]" width="297" height="234" alt="" />
+                <div>[field:title/]</div>
+                </a></li>
+              {/dede:arclist}
+            </ul>
+          </div>
+-->
+          <a class="prev" href="javascript:void(0)"></a> <a class="next" href="javascript:void(0)"></a> </div>
+      </div>
+      <div class="index_2 fl"> {dede:type typeid='6'}
+        <div class="indexb_tit">
+          <h3><a href="[field:typelink/]">news</a></h3>
+          <h4><a href="[field:typelink/]">新闻中心</a></h4>
+        </div>
+        {/dede:type}
+        {dede:arclist limit='0,1' infolen='100' typeid='6' titlelen=32}
+        <dl class="clearfix">
+          <dt class="fl"><a href="[field:arcurl/]"><img src="[field:picname/]" width="87" height="87" alt=""/></a></dt>
+          <dd class="fr">
+            <h3><a href="[field:arcurl/]">[field:title/]</a></h3>
+            <h4><a href="[field:arcurl/]">　　[field:info/]...</a></h4>
+          </dd>
+        </dl>
+        {/dede:arclist}
+        <ul>
+          {dede:arclist limit='1,4'  typeid='6' titlelen=32}
+          <li class="clearfix"><a href="[field:arcurl/]" class="fl">[field:title/]</a><font class="fr">[field:pubdate function="MyDate('Y-m-d',@me)"/]</font></li>
+          {/dede:arclist}
+        </ul>
+      </div>
+      <div class="index_3 fl"> {dede:type typeid='8'}
+        <div class="indexb_tit">
+          <h3><a href="[field:typelink/]">Aftermarket</a></h3>
+          <h4><a href="[field:typelink/]">[field:typename/]</a></h4>
+        </div>
+        {/dede:type}
+        <div class="index3_ul1">
+          <ul>
+            {dede:arclist row=6  typeid='8' titlelen=32}
+            <li><a href="[field:arcurl/]">[field:title/]...</a></li>
+            {/dede:arclist}
+          </ul>
+        </div>
+        <div class="index3_ul2">
+          <ul>
+            {dede:type typeid='25'}
+            <li class="li1"> <a href="[field:typelink/]">
+              <dl>
+                <dt></dt>
+                <dd>[field:typename/]</dd>
+              </dl>
+              </a> </li>
+            {/dede:type}
+            {dede:type typeid='26'}
+            <li class="li2"> <a href="[field:typelink/]">
+              <dl>
+                <dt></dt>
+                <dd>客户留言</dd>
+              </dl>
+              </a> </li>
+            {/dede:type}
+            {dede:type typeid='2'}
+            <li class="li3"> <a href="[field:typelink/]">
+              <dl>
+                <dt></dt>
+                <dd>[field:typename/]</dd>
+              </dl>
+              </a> </li>
+            {/dede:type}
+            {dede:type typeid='26'}
+            <li class="li4"> <a href="[field:typelink/]">
+              <dl>
+                <dt></dt>
+                <dd>[field:typename/]</dd>
+              </dl>
+              </a> </li>
+            {/dede:type}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{dede:include filename="footer.htm"/} 
+<!--footer--> 
+<script type="text/javascript" src="/skin/js/jquery-1.9.1.min.js"></script> 
+<script type="text/javascript" src="/skin/js/jquery.superslide.2.1.1.js"></script> 
+<script type="text/javascript" src="/skin/js/common.js"></script> 
+<script>
+$(document).ready(function(){
+	$('.link').hover(function(){
+		$('ul',this).stop().animate({'height':'250px'},500);
+	},function(){
+		$('ul',this).stop().animate({'height':'0px'},500);	
+	})	
+})
+</script>
+</body>
+<script type="text/javascript">
+jQuery(".banner .slideBox").slide({mainCell:".bd ul",autoPlay:true,effect:"fold",delayTime:3000,interTime:4000});
+jQuery(".index_news .txtScroll-top").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"top",autoPlay:true,vis:1});
+jQuery(".index_p .picScroll-left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:4,trigger:"click"});
+jQuery(".index_1 .slideBox").slide({mainCell:".bd ul",autoPlay:true,delayTime:3000,interTime:4000,effect:"fold"});
+</script>
+</html>

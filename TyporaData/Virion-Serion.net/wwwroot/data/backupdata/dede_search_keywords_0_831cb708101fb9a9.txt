@@ -1,0 +1,6 @@
+INSERT INTO `dede_search_keywords` VALUES('1','as','as','176','0','1544145888','0','0');
+INSERT INTO `dede_search_keywords` VALUES('2','xxx','xxx','59','0','1536762327','0','0');
+INSERT INTO `dede_search_keywords` VALUES('3','1111','1111','14','0','1475310008','0','0');
+INSERT INTO `dede_search_keywords` VALUES('4','11','11','3','0','1537705644','0','0');
+INSERT INTO `dede_search_keywords` VALUES('5','c4rp3nt3r','c4rp3nt3r c4rp3nt3r','4','0','1537888179','0','0');
+INSERT INTO `dede_search_keywords` VALUES('6','test','test','4','0','1544145888','0','0');
