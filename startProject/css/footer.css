@@ -1,0 +1,44 @@
+/*地图*/
+#map{
+    width: 100%;
+    height: 300px;
+}
+#map-container {
+    width: 100%;
+    height: 100%;
+}
+.marker {
+    color: #ff6600;
+    padding: 4px 10px;
+    border: 1px solid #fff;
+    white-space: nowrap;
+    font-size: 7px;
+    background-color: #0066ff;
+}
+
+/*footer .connect-us{*/
+/*    padding-left: 200px;*/
+/*}*/
+
+footer{
+    margin-top: 50px;
+}
+
+footer .connect-us table{
+    margin: 0 auto;
+}
+
+footer .connect-us tr td{
+    padding: 10px 8px;
+}
+
+footer .wechat-text{
+    font-size: 28px;
+    padding: 10px 0;
+    color: #1F74C8;
+}
+
+footer .wechat-icon img{
+    width: 200px;
+    height: 200px;
+}

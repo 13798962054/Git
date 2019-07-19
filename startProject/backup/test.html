@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <style type="text/css">
+        #con1{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="a" id="con1">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-color: yellow">slider1</div>
+        <div class="swiper-slide" style="background-color: red">slider2</div>
+        <div class="swiper-slide" style="background-color: green">slider3</div>
+    </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="js/swiper.min.js"></script>
+
+
+<script type="text/javascript">
+
+    new Swiper('#con1', {
+        loop:true,
+        autoplay: 5000,//可选选项，自动滑动
+        effect:'cube',
+        cube:{
+            shadow:false
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+body{
+    font-family: "Microsoft YaHei", SIMHEI, sans-serif;
+}
+.current-position{
+    width: 100%;
+    height: 20px;
+    padding: 25px 0 5px;
+    border-bottom: #2B91ED 2px solid;
+    text-align: right;
+    font-size: 12px;
+}
+
+.current-position-normal{
+    color: #585858;
+}
+
+.current-position-link{
+    color: #232323;
+    font-weight: 700;
+}
+
+.current-position-link a{
+    color: #232323;
+    text-decoration: none;
+}
+
+.current-position-link a:hover{
+    color: #2B91ED;
+}
+
+
+#good{
+
+    width: 900px;
+    list-style-type: none;
+}
+
+#good-name{
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 40px;
+    height: 40px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#good-type{
+    text-align: center;
+}
+
+#good-info .info-list{
+    height: 30px;
+    width: 100%;
+    margin-top: 20px;
+    border-bottom: 2px #2B91ED solid;
+}
+
+#good-info .info-list li{
+    display: block;
+    float: left;
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    color: #666;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+#good-info .info-list li:hover{
+    color: #2B91ED;
+}
+
+
+#good-info .info-list .active{
+    color: #fff;
+    background-color: #2B91ED;
+    cursor: auto;
+}
+
+#good-info .info-list .active:hover{
+    color: #fff;
+}
+
+.info-content{
+    border: 1px solid #f1f1f1;
+}
+
+/*标题*/
+h1{
+    font-size: 15px;
+    padding: 15px 0;
+    color: #535353;
+}
+/*具体参数*/
+.info-content-1{
+    margin-left: 60px;
+    margin-bottom: 60px;
+    color: #535353;
+    font-size: 15px;
+    font-family: Futura, Arial, sans-serif;
+    /*表格边框样式*/
+    border-collapse: collapse;
+
+}
+
+.info-content-1 .image img{
+    width: 314px;
+    height: 250px;
+}
+
+.info-content-1 td{
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #000;
+}
+
+.info-content-1 th{
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #000;
+}
+
+/*配置*/
+.info-content-2{
+    text-align: center;
+    margin-left: 60px;
+    margin-bottom: 60px;
+    color: #535353;
+    font-size: 15px;
+    font-family: "微软雅黑";
+    /*表格边框样式*/
+    border-collapse: collapse;
+}
+
+.info-content-2 .image img{
+    width: 300px;
+}
+
+.info-content-2 th{
+    border: 1px solid #000;
+}
+
+.info-content-2 td{
+    border: 1px solid #000;
+}
+
+/*商品评价*/
+#good-comment .comment-title{
+    text-indent: 2em;
+    height: 36px;
+    line-height: 36px;
+    color: #e60012;
+    background-color: #ecf5fb;
+    border-bottom: #e60012 1px solid;
+}
+
+#good-comment .comment-content{
+    text-indent: 1em;
+}
+
+.info-content-3{
+    text-align: center;
+    margin: 20px auto 70px;
+    color: #535353;
+    font-size: 15px;
+    font-family: "微软雅黑";
+    /*表格边框样式*/
+    border-collapse: collapse;
+}
+
+.info-content-3 th{
+    border: 1px solid #000;
+}
+
+.info-content-3 td{
+    border: 1px solid #000;
+}
+/*标价框*/
+#price-box{
+    position: absolute;
+    top: 120px;
+    right: 50px;
+    padding: 10px;
+    width: 260;
+    height: 255px;
+    border: 1px solid #c3c3c3;
+}
+
+#price-box .price{
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    height: 42px;
+    color: #2B91ED;
+    font-size: 32px;
+}
+
+#price-box .type{
+    display: block;
+    font-size: 20px;
+    color: #707070;
+}
+/*数量*/
+
+#pcs input{
+    height: 22px;
+    line-height: 22px;
+    vertical-align:bottom;
+}
+#pcs input:nth-child(2){
+    width: 22px;
+}
+#pcs input:nth-child(3){
+    width: 50px;
+}
+#pcs input:nth-child(4){
+    width: 22px;
+}
+#price-box hr{
+    margin: 28px 0 15px;
+    border-color: #2B91ED;
+}
+
+#price-box .under-div{
+    margin: 10px 12.5px;
+}
+
+#price-box div{
+    margin: 10px 0;
+}
+
+#price-box .title{
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "微软雅黑",Arial, Verdana;
+}
+
+#price-box .content{
+    color: #959595;
+}
+
+#price-box .sub{
+    width: 220px;
+    height: 32px;
+    line-height: 32px;
+    background-color: #2B91ED;
+    color: #fff;
+
+    display: block;
+    margin: 20px auto 10px;
+    font-size: 20px;
+    padding: 3px 0;
+    line-height: normal;
+    border-radius: 3px;
+
+}

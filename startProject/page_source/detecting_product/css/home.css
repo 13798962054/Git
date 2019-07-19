@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #ECECEC;
+}
+li{
+    list-style-type: none;
+}
+
+#detecting-product-home-swiper{
+
+    width: 1000px;
+    height: 370px;
+}
+#detecting-product-home-swiper .swiper-pagination{
+    position: relative;
+    bottom: 30px;
+}
+
+#detecting-product-home-info{
+    margin-top: 40px;
+    width: 1000px;
+    background-color: #fff;
+}
+
+#info-title{
+    border-bottom: 2px #2B91ED solid;
+}
+
+#info-title li{
+    display: inline-block;
+    height: 46px;
+    line-height: 46px;
+    width: 143px;
+    text-align: center;
+    color: #2B91ED;
+    font: 14px/43px "microsoft yahei";
+}
+#info-title .info-title-active{
+    font-weight: 600;
+}
+#info-title .info-title-active span{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -44px;
+    left: 0;
+}
+
+#info-title .info-title-active span i{
+    display: block;
+    border: 2px solid #2B91ED;
+    border-bottom: 3px solid #fff;
+    height: 44px;
+}
+#info-content{
+    margin-top: 15px;
+}
+
+
+#info-content li{
+    width: 1000px;
+    height: 243px;
+    display: none;
+    /*background-color: #2B91ED;*/
+}
+
+#info-content li:first-child{
+    display: block;
+}
+
+#info-content .info-content-item{
+    width: 199px;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+#info-content .info-content-item .name{
+    /*height: 40px;*/
+    /*line-height: 40px;*/
+    margin: 10px 25px;
+    font-size: 13px;
+}
+
+#info-content .info-content-item .name a{
+    color: #666;
+    text-decoration: none;
+}
+
+#info-content .info-content-item .name:hover a{
+    color: #2B91ED;
+}
+
+#info-content .info-content-item .type{
+    height: 40px;
+    line-height: 40px;
+    color: #2B91ED;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+#info-content .info-content-item img{
+    width: 140px;
+    height: 140px;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#info-content .info-content-item:hover img{
+    -webkit-transform: scale(1.1) translateY(-7px);
+    -moz-transform: scale(1.1) translateY(-7px);
+    -ms-transform: scale(1.1) translateY(-7px);
+    -o-transform: scale(1.1) translateY(-7px);
+    transform: scale(1.1) translateY(-7px);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+
+}
