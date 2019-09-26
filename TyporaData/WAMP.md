@@ -1,6 +1,6 @@
 # Apache
 
-http.conf添加php环境
+#### 1、http.conf添加php环境
 
 LoadModule php7_module "E:/owen/software/wamp/php-7.3.5/php7apache2_4.dll"
 PHPIniDir "E:/owen/software/wamp/php-7.3.5/php.ini"
@@ -23,6 +23,26 @@ AddType application/x-httpd-php .php
 </IfModule>
 
 ```
+
+#### 2、重启Apache
+
+httpd.exe -k restart
+
+#### 3、添加端口和监听的文件夹(httpd.conf)
+
+```xml
+Listen 8080
+<VirtualHost *:8080>
+    DocumentRoot E:\owen\software\wamp\Apache24\htdocs\startProject
+</VirtualHost>
+<Directory "E:\owen\software\wamp\Apache24\htdocs\startProject">
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+```
+
+
 
 # php
 
