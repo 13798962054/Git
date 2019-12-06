@@ -905,6 +905,96 @@ d:\tc2\test.exe > d:\output.txt
 UnicodeDecodeError: 'utf-8' codec can't decode byte 0xa9 in position 15: invalid
  start byte
 
+## 十五、opencv + tesseract识别图表
+
+```shell
+pip install opencv-python
+pip install pytesseract
+pip install imutils
+```
+
+## 十六、openCV
+
+### 1、创建窗口再加载图像，可以决定窗口是否可以调整大小
+
+```python
+# 创建窗口，可调整大小
+cv2.namedWindow(image, cv2.WINDOW_NORMAL)
+# 添加图片
+cv2.imshow('image', image)
+# 等待键盘事件
+cv2.waitKey(0)
+# 销毁
+```
+
+### 2、保存图片
+
+```python
+cv2.imwrite("img", image)
+```
+
+### 3、matplotlab
+
+```python
+from matplotlib import pyplot as plt
+import cv2
+
+img = cv2.imread("../tower.jpg", 0)
+# 打开灰度模式
+plt.imshow(img, cmap='gray', interpolation='bicubic')
+# 去掉X和Y轴坐标
+plt.xticks([]), plt.yticks([])
+plt.show()
+```
+
+### 4、openCV和matplotlab在加载图片时的区别
+
+彩色图片使用openCV加载时是BGR模式，但是matplotlab是RGB模式，所以图像如果已经被openCV读取了，它将不会被Matplotlib正确读取
+
+### 5、openCV绘图函数
+
+1）画线
+
+```python
+import numpy as np
+import cv2
+
+img = np.zeros((512, 512, 3), np.uint8)
+# 绘制一条左上到右下的宽度为5的蓝色线段
+cv2.line(img, (0, 0), (511, 511), (255, 0, 0), 5)
+# 显示图片
+cv2.imshow("img", img)
+# 等待键盘事件
+cv2.waitKey(0)
+# 销毁所有窗口
+cv2.destroyAllWindows()
+```
+
+2）画矩阵
+
+```python
+# 绘制一个对角线左上到右下的宽度为5的矩阵
+cv2.rectangle(img, (0, 0), (511, 511), (255, 0, 0), 5)
+```
+
+3）画圆
+
+```python
+# 绘制一个中心点坐标为(255, 255)，半径大小为100，颜色为绿色的实心圆
+cv2.circle(img, (255, 255), 100, (0, 255, 0), -1
+```
+
+4）画椭圆
+
+```python
+# 中心点坐标为(255, 255)，长轴和短轴分别为200和100，显示范围为0到180°的红色的，宽度为5的椭圆
+cv2.ellipse(img, (255, 255), (200, 100), 0, 0, 180, (0, 0, 255), 5)
+```
+
+
+
+
+
 
 
 ## *More

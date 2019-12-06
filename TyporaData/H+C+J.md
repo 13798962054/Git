@@ -1,5 +1,16 @@
 # 一、HTML
 
+1、强制国产浏览器使用 **Chromium** 内核
+
+```html
+<meta name="renderer" content="webkit"/>
+<meta name="force-rendering" content="webkit"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+```
+
+
+
 # 二、CSS
 
 ### 1、字体
@@ -27,9 +38,21 @@ text-transform: uppercase;
 text-transform: lowercase;
 ```
 
+### 2、z-index鼠标穿透
+
+```html
+pointer-events: none;
+```
+
+### 3、背景图片不滚动
+
+```HTML
+background-attachment:fixed
+```
+
 # 三、JS
 
-1、设置网页可选中复制
+## 1、设置网页可选中复制
 
 ```js
 document.oncontextmenu=function(){return true;}; 
@@ -37,7 +60,13 @@ document.oncontextmenu=function(){return true;};
 document.onselectstart=function(){return true;};
 ```
 
+## 2、陌生函数
 
+1、数组的some函数
+
+2、数组的findIndex函数
+
+3、数组的splice函数
 
 # 四、JQuery
 

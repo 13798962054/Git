@@ -45,3 +45,11 @@ gbhzfs;gbcbig.shx
 
 ![](E:\owen\data\TyporaData\Auto\中文乱码_设置fmp文件)
 
+### 3、常用指令
+
+直线：line
+
+移动：move
+
+标记直线距离：dimliner
+
