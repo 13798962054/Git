@@ -50,6 +50,15 @@ pointer-events: none;
 background-attachment:fixed
 ```
 
+### 4、尺寸单位
+
+```CSS
+1vh = viewportHeight * 1/100; 
+1vw = viewportWidth * 1/100; 
+```
+
+
+
 # 三、JS
 
 ## 1、设置网页可选中复制

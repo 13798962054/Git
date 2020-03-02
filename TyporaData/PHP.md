@@ -13,6 +13,14 @@
 $x xor $y
 ```
 
+2、phpMyAdmin访问远程数据库
+
+- 修改libraries/config.default.php文件
+
+```php
+$cfg['Servers'][$i]['host'] = '服务器地址';
+```
+
 
 
 
@@ -185,3 +193,64 @@ echo($$$a);
 匹配空白行：^\n
 
 匹配所有带数字的括号：\（(\d)\）
+
+## 5、图片上传和预览
+
+```HTML
+<title>无标题文档</title>
+<style type="text/css">
+#yl{ width:200px; height:300px; background-image:url(img/11.png); background-size:200px 300px;}
+#file{ width:200px; height:300px; float:left; opacity:0;}
+</style>
+</head>
+<body>
+<form id="sc" action="chuli.php" method="post" enctype="multipart/form-data" target="shangchuan">  
+ <input type="hidden" name="tp" value="" id="tp" />
+ <div id="yl">
+  <input type="file" name="file" id="file" onchange="document.getElementById('sc').submit()" />
+ </div>
+</form>
+<iframe style="display:none" name="shangchuan" id="shangchuan">
+</iframe>
+</body> 
+<script type="text/javascript">
+//回调函数,调用该方法传一个文件路径，该变背景图
+function showimg(url)
+{
+    var div = document.getElementById("yl");
+    div.style.backgroundImage = "url("+url+")";
+    document.getElementById("tp").value = url;
+}
+  
+</script> 
+</html>
+```
+
+chuli.php
+
+```php
+<?php
+  
+if($_FILES["file"]["error"]){
+    echo $_FILES["file"]["error"];
+}
+else{
+    if(($_FILES["file"]["type"]=="image/jpeg" || $_FILES["file"]["type"]=="image/png")&& $_FILES["file"]["size"]<1024000){
+      $fname = "./img/".date("YmdHis").$_FILES["file"]["name"];  
+      $filename = iconv("UTF-8","gb2312",$fname);
+
+      if(file_exists($filename))
+      {
+          echo "<script>alert('该文件已存在！');</script>";
+      }
+      else
+      {
+          move_uploaded_file($_FILES["file"]["tmp_name"],$filename);    
+          unlink($_POST["tp"]);     
+          echo "<script>parent.showimg('{$fname}');</script>";
+      }    
+ 	}
+}
+?>
+```
+

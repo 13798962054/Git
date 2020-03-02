@@ -1,3 +1,19 @@
+## 	*指令
+
+1、搜索目录下包含某一字段的文件
+
+```bat
+find . | xargs grep "custom"
+# 只查看文件， 不查看目录
+find . -type f | xargs grep "custom"
+# 只列出文件名
+find . -type f | xargs grep "搜索框" -l
+# 搜索当前目录下
+ grep -r "搜索框" -l
+
+
+```
+
 ## *问题
 
 #### 1、Unable to locate package错误解决办法

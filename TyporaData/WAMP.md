@@ -31,15 +31,17 @@ httpd.exe -k restart
 #### 3、添加端口和监听的文件夹(httpd.conf)
 
 ```xml
-Listen 8080
-<VirtualHost *:8080>
-    DocumentRoot E:\owen\software\wamp\Apache24\htdocs\startProject
+# 标准写法
+Listen 8086
+<VirtualHost *:8086>
+    DocumentRoot E:\owen\data\LaravelData\demo1\public
+
+    <Directory "E:\owen\data\LaravelData\demo1\public">
+        Options -Indexes
+        AllowOverride all
+        Require all granted
+    </Directory>
 </VirtualHost>
-<Directory "E:\owen\software\wamp\Apache24\htdocs\startProject">
-    Options Indexes FollowSymLinks
-    AllowOverride None
-    Require all granted
-</Directory>
 ```
 
 
